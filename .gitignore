@@ -6,3 +6,5 @@ temp/
 www/build/
 platforms/
 plugins/
+.idea/
+www/
