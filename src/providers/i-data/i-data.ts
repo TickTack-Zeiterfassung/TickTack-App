@@ -1,41 +1,43 @@
-import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-
 /**
- * IDataProvider
- *
+ * @author Matthias
+ * @interface IDataProvider
  * Interface für die standartisierte Kommunikation zwischen der App und dem Backend-Server.
  */
-@Injectable()
 export class IDataProvider {
 
     /**
      * Liefert Daten vom Backend.
+     * @params itemName Name des Objektes
+     * @params id ID fuer die Selektion eines bestimmten Objektes
      * @returns {any}
      */
-    public get(): any { return null; }
+    public get(itemName: string, id: string): any { return null; }
 
     /**
      * Erstellt Daten im Backend.
-     * @param data
+     * @params itemName Name des Objektes
+     * @params item Objekt das abgespeichert werden soll
      * @returns {boolean}
      */
-    public set(data: any): boolean { return null; }
+    public insert(itemName: string, item: any): boolean { return null; }
 
     /**
      * Aktualisiert Daten im Backend.
-     * @param data
-     * @param where
+     * @param itemName Name des Objektes
+     * @param item Objekt mit neuen Daten
+     * @param id ID des zu aendernden Objektes
      * @returns {boolean}
      */
-    public update(data: any, where: any): boolean { return null; }
+    public update(itemName: string, item: any, id: string): boolean { return null; }
 
     /**
      * Löscht Daten aus dem Backend.
-     * @param where
+     * @param itemName Name des Objektes
+     * @param id ID des zu loeschenden Objektes
      * @returns {boolean}
      */
-    public delete(where: any): boolean { return null }
+    public delete(itemName: string, id: string): boolean { return null }
 
 }
