@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {IAuthProvider} from "../i-auth/i-auth";
-import {AngularFireAuth} from "angularfire2/auth";
+import { IAuthProvider } from "../i-auth/i-auth";
+import { AngularFireAuth } from "angularfire2/auth";
 
 /**
  * @author Matthias

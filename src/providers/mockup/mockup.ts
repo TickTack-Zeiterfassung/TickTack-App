@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import {IDataProvider} from "../i-data/i-data";
-import {Project} from "../../model/project";
+import { IDataProvider } from "../i-data/i-data";
+import { Project } from "../../model/project";
 
 /**
  * @Author Matthias
@@ -14,29 +14,55 @@ import {Project} from "../../model/project";
 @Injectable()
 export class MockupProvider implements IDataProvider {
 
-  constructor() {}
+    constructor() {
+    }
 
-  public get(itemName: string, id: string): any {
+    /**
+     * Liefert Daten vom Backend.
+     * @params itemName Name des Objektes
+     * @params id ID fuer die Selektion eines bestimmten Objektes
+     * @returns {any}
+     */
+    public get(itemName: string, id: string): any {
 
-      if(itemName === 'Project') {
-        switch(id) {
-            case '1':
-              return <Project>{id: '1', desc: 'Test'};
+        if (itemName === 'Project') {
+            switch (id) {
+                case '1':
+                    return <Project>{id: '1', desc: 'Test'};
+            }
         }
-      }
 
-      return null;
-  }
+        return null;
+    }
 
-  public insert(itemName: string, item: any): boolean {
-      return null;
-  }
+    /**
+     * Erstellt Daten im Backend.
+     * @params itemName Name des Objektes
+     * @params item Objekt das abgespeichert werden soll
+     * @returns {boolean}
+     */
+    public insert(itemName: string, item: any): boolean {
+        return null;
+    }
 
-  public update(itemName: string, item: any, id: string): boolean {
-      return null;
-  }
+    /**
+     * Aktualisiert Daten im Backend.
+     * @param itemName Name des Objektes
+     * @param item Objekt mit neuen Daten
+     * @param id ID des zu aendernden Objektes
+     * @returns {boolean}
+     */
+    public update(itemName: string, item: any, id: string): boolean {
+        return null;
+    }
 
-  public delete(itemName: string, id: string): boolean {
-      return null;
-  }
+    /**
+     * Löscht Daten aus dem Backend.
+     * @param itemName Name des Objektes
+     * @param id ID des zu loeschenden Objektes
+     * @returns {boolean}
+     */
+    public delete(itemName: string, id: string): boolean {
+        return null;
+    }
 }

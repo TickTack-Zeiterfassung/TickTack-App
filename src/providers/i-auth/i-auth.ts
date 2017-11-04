@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 /**
  * @author Matthias
  *
  * IAuthProvider
- * Interface für die standartisierte Authentifizierung zwischen der App und dem Backend-Server.
+ * Interface für die standardisierte Authentifizierung zwischen der App und dem Backend-Server.
  */
 @Injectable()
 export class IAuthProvider {

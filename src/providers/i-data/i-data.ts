@@ -2,7 +2,7 @@ import 'rxjs/add/operator/map';
 
 /**
  * @author Matthias
- * @interface IDataProvider
+ * IDataProvider
  * Interface für die standartisierte Kommunikation zwischen der App und dem Backend-Server.
  */
 export class IDataProvider {

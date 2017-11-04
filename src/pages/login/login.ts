@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
-import {IAuthProvider} from "../../providers/i-auth/i-auth";
+import { Component } from '@angular/core';
+import { IonicPage, NavController } from 'ionic-angular';
+import { IAuthProvider } from "../../providers/i-auth/i-auth";
 
 /**
  * @author Matthias
@@ -18,11 +18,12 @@ export class LoginPage {
     email: string;
     password: string;
 
-    constructor(public navCtrl: NavController, private auth: IAuthProvider) {}
+    constructor(public navCtrl: NavController, private auth: IAuthProvider) {
+    }
 
     ionViewWillLoad() {
         console.log('Check auth.');
-        if(this.auth.isLoggedIn()) {
+        if (this.auth.isLoggedIn()) {
             this.navCtrl.setRoot('CaptureTimePage');
         }
     }
@@ -31,7 +32,7 @@ export class LoginPage {
         this.auth.login(this.email, this.password).then(
             result => {
                 console.log(result);
-                if(result) {
+                if (result) {
                     this.navCtrl.setRoot('CaptureTimePage');
                 }
             }
