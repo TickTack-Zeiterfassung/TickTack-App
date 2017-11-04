@@ -5,7 +5,8 @@ import { Project } from "../../model/project";
 
 /**
  * @Author Matthias
- * @class ProjectProvider
+ *
+ * ProjectProvider
  * Mithilfe dieser Klasse koennen Instanzen vom Typ Project aus dem Backend:
  *  - erzeugt/geladen
  *  - gespeichert
