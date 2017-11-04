@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ProjectProvider} from '../../providers/project/project';
+import {IAuthProvider} from '../../providers/i-auth/i-auth';
 
 /**
- * Generated class for the ReportPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * @Author Marcel
+ * Liefert eine Auswertung über alle erfassten zeiten
  */
 
 @IonicPage()
@@ -15,11 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ReportPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    constructor(private auth: IAuthProvider,
+                public navCtrl: NavController,
+                public projectProvider: ProjectProvider) {
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReportPage');
-  }
+    ionViewWillLoad() {
+        if (!this.auth.isLoggedIn()) {
+            this.navCtrl.setRoot('LoginPage');
+        }
+    }
 
 }
