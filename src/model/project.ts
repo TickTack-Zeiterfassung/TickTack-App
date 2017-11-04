@@ -1,13 +1,14 @@
 /**
  * @author Matthias
- * @class Project
+ * Project
  * Modell eines Projekt-Objektes
  */
 export class Project {
     private _id;
     private _desc;
 
-    public constructor() {}
+    public constructor() {
+    }
 
     get id() {
         return this._id;

@@ -1,13 +1,18 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
-import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
-import {SplashScreen} from '@ionic-native/splash-screen';
-import {StatusBar} from '@ionic-native/status-bar';
+import { BrowserModule } from '@angular/platform-browser';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 
-import {MyApp} from './app.component';
-import {IDataProvider} from '../providers/i-data/i-data';
-import {MockupProvider} from '../providers/mockup/mockup';
-import {ProjectProvider} from '../providers/project/project';
+import { MyApp } from './app.component';
+import { IDataProvider } from '../providers/i-data/i-data';
+import { MockupProvider } from '../providers/mockup/mockup';
+import { ProjectProvider } from '../providers/project/project';
+import { IAuthProvider } from '../providers/i-auth/i-auth';
+import { AngularFireModule } from "angularfire2";
+import { FIREBASE_CONFIG } from "./app.firebase.config";
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
 
 @NgModule({
     declarations: [
@@ -15,7 +20,9 @@ import {ProjectProvider} from '../providers/project/project';
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        AngularFireModule.initializeApp(FIREBASE_CONFIG),
+        AngularFireAuthModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -26,12 +33,13 @@ import {ProjectProvider} from '../providers/project/project';
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
 
-        ProjectProvider,
-
         MockupProvider,
         {provide: IDataProvider, useClass: MockupProvider},
-        MockupProvider,
-        ProjectProvider
+        ProjectProvider,
+
+        FirebaseAuthProvider,
+        {provide: IAuthProvider, useClass: FirebaseAuthProvider}
+
     ]
 })
 export class AppModule {
