@@ -3,8 +3,10 @@ import {IonicPage, NavController} from 'ionic-angular';
 import {IAuthProvider} from "../../providers/i-auth/i-auth";
 
 /**
- * LoginPage
  * @author Matthias
+ *
+ * LoginPage
+ * Seite zum Login der Nutzer in der App.
  */
 @IonicPage()
 @Component({

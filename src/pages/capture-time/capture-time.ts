@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController} from 'ionic-angular';
 import {ProjectProvider} from "../../providers/project/project";
 import {Project} from "../../model/project";
 import {IAuthProvider} from "../../providers/i-auth/i-auth";
 
 /**
  * @Author Marcel
- * @Info RootPage
+ *
+ * RootPage
  * Über diese Klasse kann die Zeit aufgenommen werden.
  */
 
@@ -19,15 +20,14 @@ export class CaptureTimePage {
 
     private testProject: Project;
 
-    constructor(private authProvider: IAuthProvider,
+    constructor(private auth: IAuthProvider,
                 public navCtrl: NavController,
-                public navParams: NavParams,
                 public projectProvider: ProjectProvider) {
     }
 
     ionViewWillLoad() {
         console.log('Check auth.');
-        if(!this.authProvider.isLoggedIn()) {
+        if (!this.auth.isLoggedIn()) {
             this.navCtrl.setRoot('LoginPage');
         }
     }
@@ -36,6 +36,17 @@ export class CaptureTimePage {
 
         this.testProject = this.projectProvider.getById('1');
         console.log(this.testProject);
+    }
+
+    /**
+     * Logout-Funktion
+     */
+    logout() {
+        this.auth.logout().then(result => {
+            if (result) {
+                this.navCtrl.setRoot('LoginPage');
+            }
+        })
     }
 
 }

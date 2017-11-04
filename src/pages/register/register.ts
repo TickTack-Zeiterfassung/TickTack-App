@@ -3,8 +3,10 @@ import {IonicPage, NavController} from 'ionic-angular';
 import {IAuthProvider} from "../../providers/i-auth/i-auth";
 
 /**
- * RegisterPage
  * @author Matthias
+ *
+ * RegisterPage
+ * Seite zum Registrieren eines neuen Nutzers.
  */
 
 @IonicPage()
@@ -18,18 +20,19 @@ export class RegisterPage {
     password: string;
 
     constructor(private auth: IAuthProvider,
-                public navCtrl: NavController) {}
+                public navCtrl: NavController) {
+    }
 
     ionViewWillLoad() {
         console.log('Check auth.');
-        if(this.auth.isLoggedIn()) {
+        if (this.auth.isLoggedIn()) {
             this.navCtrl.setRoot('CaptureTimePage');
         }
     }
 
     register(): void {
-        this.auth.register(this.email, '', this.password).then(result => {
-            if(result) {
+        this.auth.register(this.email, this.password).then(result => {
+            if (result) {
                 this.navCtrl.setRoot('CaptureTimePage');
             }
         })

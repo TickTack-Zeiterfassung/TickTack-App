@@ -6,7 +6,8 @@ import {Project} from "../../model/project";
 
 /**
  * @Author Matthias
- * @Info MockupProvider
+ *
+ * MockupProvider
  * Mithilfe dieser Klasse koennen die Funktionen ohne ein existierendes Backend geladen werden.
  */
 
