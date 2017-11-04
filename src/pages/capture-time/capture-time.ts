@@ -6,9 +6,8 @@ import { IAuthProvider } from "../../providers/i-auth/i-auth";
 
 /**
  * @Author Marcel
- *
- * RootPage
- * Über diese Klasse kann die Zeit aufgenommen werden.
+ * @Info RootPage
+ * Seite zum Aufnehmen der Zeit
  */
 
 @IonicPage()
@@ -26,14 +25,12 @@ export class CaptureTimePage {
     }
 
     ionViewWillLoad() {
-        console.log('Check auth.');
         if (!this.auth.isLoggedIn()) {
             this.navCtrl.setRoot('LoginPage');
         }
     }
 
     ionViewDidLoad() {
-
         this.testProject = this.projectProvider.getById('1');
         console.log(this.testProject);
     }

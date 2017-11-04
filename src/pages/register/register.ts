@@ -4,8 +4,6 @@ import { IAuthProvider } from "../../providers/i-auth/i-auth";
 
 /**
  * @author Matthias
- *
- * RegisterPage
  * Seite zum Registrieren eines neuen Nutzers.
  */
 

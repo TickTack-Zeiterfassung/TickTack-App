@@ -4,8 +4,6 @@ import { IAuthProvider } from "../../providers/i-auth/i-auth";
 
 /**
  * @author Matthias
- *
- * LoginPage
  * Seite zum Login der Nutzer in der App.
  */
 @IonicPage()
