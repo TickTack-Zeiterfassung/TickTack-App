@@ -6,13 +6,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { IDataProvider } from '../providers/i-data/i-data';
-import { MockupProvider } from '../providers/mockup/mockup';
 import { ProjectProvider } from '../providers/project/project';
 import { IAuthProvider } from '../providers/i-auth/i-auth';
+
 import { AngularFireModule } from "angularfire2";
 import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
+import { FirebaseDataProvider } from '../providers/firebase-data/firebase-data';
+import { AngularFireDatabaseModule } from "angularfire2/database";
 
 @NgModule({
     declarations: [
@@ -21,8 +23,10 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
+
         AngularFireModule.initializeApp(FIREBASE_CONFIG),
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        AngularFireDatabaseModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -33,8 +37,8 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
 
-        MockupProvider,
-        {provide: IDataProvider, useClass: MockupProvider},
+        FirebaseDataProvider,
+        {provide: IDataProvider, useClass: FirebaseDataProvider},
         ProjectProvider,
 
         FirebaseAuthProvider,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { IDataProvider } from "../i-data/i-data";
-import { Project } from "../../model/project";
+import { Project } from "../../models/project";
 
 /**
  * @Author Matthias

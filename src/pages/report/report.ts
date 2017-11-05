@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ProjectProvider} from '../../providers/project/project';
+import { IonicPage, NavController } from 'ionic-angular';
 import {IAuthProvider} from '../../providers/i-auth/i-auth';
 
 /**
@@ -16,14 +15,16 @@ import {IAuthProvider} from '../../providers/i-auth/i-auth';
 export class ReportPage {
 
     constructor(private auth: IAuthProvider,
-                public navCtrl: NavController,
-                public projectProvider: ProjectProvider) {
+                public navCtrl: NavController) {
     }
 
     ionViewWillLoad() {
-        if (!this.auth.isLoggedIn()) {
-            this.navCtrl.setRoot('LoginPage');
-        }
+
+        this.auth.isLoggedIn().then(loggedIn => {
+            if(!loggedIn) {
+                this.navCtrl.setRoot('LoginPage');
+            }
+        });
     }
 
 }

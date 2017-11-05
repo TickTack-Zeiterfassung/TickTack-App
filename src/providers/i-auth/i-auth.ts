@@ -40,10 +40,18 @@ export class IAuthProvider {
 
     /**
      * Gibt zurueck ob aktuell ein Nutzer angemeldet ist.
-     * @returns {boolean}
+     * @returns {Promise<boolean>}
      */
-    public isLoggedIn(): boolean {
+    public async isLoggedIn(): Promise<boolean> {
         return null
+    }
+
+    /**
+     * Gibt die UserID eines Benutzers zurueck.
+     * @returns {string}
+     */
+    public getUserId(): string {
+        return null;
     }
 
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { IDataProvider } from "../i-data/i-data";
-import { Project } from "../../model/project";
+import { Project } from "../../models/project";
+import { Observable } from "rxjs/Observable";
 
 /**
  * @Author Matthias
@@ -18,8 +19,16 @@ export class ProjectProvider {
     constructor(public dataProvider: IDataProvider) {
     }
 
-    getById(id: string) {
-        return <Project>this.dataProvider.get('Project', id);
+    getById(id: string): Observable<Project> {
+        return this.dataProvider.get('projects', id).map(value => {
+            return value as Project;
+        });
+    }
+
+    getAll(): Observable<Project[]> {
+        return this.dataProvider.get('projects', null).map(value => {
+            return value as Array<Project>;
+        });
     }
 
     /**
@@ -33,11 +42,11 @@ export class ProjectProvider {
 
     /**
      * TODO
-     * Speichert/Erstellt eine Instanz in dem Backend.
+     * Erstellt eine Instanz in dem Backend.
      * @param {Project} project
      */
-    save(project: Project) {
-
+    insert(project: Project) {
+        return this.dataProvider.insert('projects', project);
     }
 
 }
