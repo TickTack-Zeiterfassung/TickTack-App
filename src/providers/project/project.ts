@@ -19,12 +19,21 @@ export class ProjectProvider {
     constructor(public dataProvider: IDataProvider) {
     }
 
+    /**
+     * Liefert asynchron das angeforderte Projekt.
+     * @param {string} id
+     * @returns {Observable<Project>}
+     */
     getById(id: string): Observable<Project> {
         return this.dataProvider.get('projects', id).map(value => {
             return value as Project;
         });
     }
 
+    /**
+     * Liefert asynchon alle Projekte des Benutzers.
+     * @returns {Observable<Project[]>}
+     */
     getAll(): Observable<Project[]> {
         return this.dataProvider.get('projects', null).map(value => {
             return value as Array<Project>;
@@ -32,18 +41,18 @@ export class ProjectProvider {
     }
 
     /**
-     * TODO
      * Loescht eine Instanz aus dem Backend.
      * @param {string} id
+     * @returns {Promise<boolean>}
      */
-    deleteById(id: string) {
-
+    deleteById(id: string): Promise<boolean> {
+        return this.dataProvider.delete('projects', id);
     }
 
     /**
-     * TODO
      * Erstellt eine Instanz in dem Backend.
      * @param {Project} project
+     * @returns {Promise<boolean>}
      */
     insert(project: Project) {
         return this.dataProvider.insert('projects', project);

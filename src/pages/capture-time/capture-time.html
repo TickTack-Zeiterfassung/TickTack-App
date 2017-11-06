@@ -10,4 +10,11 @@
 <ion-content padding>
     <button ion-button (click)="logout()">Logout</button>
     <button ion-button (click)="saveProject()">Save project</button>
+
+    <ion-item>
+        <ion-label floating>Delete id</ion-label>
+        <ion-input [(ngModel)]="id"></ion-input>
+    </ion-item>
+
+    <button ion-button (click)="deleteProject()">Delete project</button>
 </ion-content>

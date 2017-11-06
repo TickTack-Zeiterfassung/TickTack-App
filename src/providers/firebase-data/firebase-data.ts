@@ -160,7 +160,21 @@ export class FirebaseDataProvider implements IDataProvider {
     }
 
     public delete(itemName: string, id: string): Promise<boolean> {
-        return null;
+        return new Promise((resolve => {
+            if(!this.userData.hasOwnProperty(itemName)) {
+                console.warn('Tried to access ' + itemName + ' of userdata, but its not available.');
+                resolve(false);
+            }
+
+            if(!this.userData[itemName].hasOwnProperty(id)) {
+                resolve(true);
+            }
+
+            this.userData[itemName][id] = null;
+            this.saveUserData()
+                .then(r => resolve(true))
+                .catch(r => resolve(false));
+        }));
     }
 
 

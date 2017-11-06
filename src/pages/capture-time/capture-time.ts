@@ -17,12 +17,14 @@ import { IAuthProvider } from "../../providers/i-auth/i-auth";
 })
 export class CaptureTimePage {
 
+    public id: string;
+
     constructor(private auth: IAuthProvider,
                 public navCtrl: NavController,
                 public projectProvider: ProjectProvider) {
     }
 
-    ionViewWillLoad() {
+    ionViewWillLoad(): void {
 
         this.auth.isLoggedIn().then(loggedIn => {
             if (!loggedIn) {
@@ -31,7 +33,7 @@ export class CaptureTimePage {
         });
     }
 
-    ionViewDidEnter() {
+    ionViewDidEnter(): void {
 
         this.projectProvider.getById('0').subscribe(project => {
             console.log(project);
@@ -45,7 +47,7 @@ export class CaptureTimePage {
     /**
      * Logout-Funktion
      */
-    logout() {
+    logout(): void {
         this.auth.logout().then(result => {
             if (result) {
                 this.navCtrl.setRoot('LoginPage');
@@ -53,10 +55,16 @@ export class CaptureTimePage {
         })
     }
 
-    saveProject() {
+    saveProject(): void {
         this.projectProvider.insert(({desc: 'Okay.'} as Project)).then(success => {
             console.log('Gespeichert');
         });
+    }
+
+    deleteProject(): void {
+        this.projectProvider.deleteById(this.id).then(success => {
+            console.log('Geloescht.');
+        })
     }
 
 }
