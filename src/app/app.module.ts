@@ -1,18 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+import {BrowserModule} from '@angular/platform-browser';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {StatusBar} from '@ionic-native/status-bar';
 
-import { MyApp } from './app.component';
-import { IDataProvider } from '../providers/i-data/i-data';
-import { MockupProvider } from '../providers/mockup/mockup';
-import { ProjectProvider } from '../providers/project/project';
-import { IAuthProvider } from '../providers/i-auth/i-auth';
-import { AngularFireModule } from "angularfire2";
-import { FIREBASE_CONFIG } from "./app.firebase.config";
-import { AngularFireAuthModule } from "angularfire2/auth";
-import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
+import {MyApp} from './app.component';
+import {IDataProvider} from '../providers/i-data-provider/i-data-provider';
+import {MockupProvider} from '../providers/mockup-provider/mockup-provider';
+import {ProjectProvider} from '../providers/project-provider/project-provider';
+import {IAuthProvider} from '../providers/i-auth-provider/i-auth-provider';
+import {AngularFireModule} from "angularfire2";
+import {FIREBASE_CONFIG} from "./app.firebase.config";
+import {AngularFireAuthModule} from "angularfire2/auth";
+import {FirebaseAuthProvider} from '../providers/firebase-auth-provider/firebase-auth-provider';
 
 @NgModule({
     declarations: [
