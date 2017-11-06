@@ -1,6 +1,5 @@
 /**
  * @author Matthias
- * Project
  * Modell eines Projekt-Objektes
  */
 export class Project {

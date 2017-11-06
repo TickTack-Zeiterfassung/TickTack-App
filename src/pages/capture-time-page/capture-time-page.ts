@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-import { ProjectProvider } from "../../providers/project/project";
-import { Project } from "../../model/project";
-import { IAuthProvider } from "../../providers/i-auth/i-auth";
+import {Component} from '@angular/core';
+import {IonicPage, NavController} from 'ionic-angular';
+import {ProjectProvider} from "../../providers/project-provider/project-provider";
+import {Project} from "../../model/project";
+import {IAuthProvider} from "../../providers/i-auth-provider/i-auth-provider";
 
 /**
  * @Author Marcel
@@ -13,7 +13,7 @@ import { IAuthProvider } from "../../providers/i-auth/i-auth";
 @IonicPage()
 @Component({
     selector: 'page-capture-time',
-    templateUrl: 'capture-time.html',
+    templateUrl: 'capture-time-page.html',
 })
 export class CaptureTimePage {
 
@@ -21,8 +21,8 @@ export class CaptureTimePage {
 
     constructor(private auth: IAuthProvider,
                 public navCtrl: NavController,
-                public projectProvider: ProjectProvider) {
-    }
+                public projectProvider: ProjectProvider
+    ) {}
 
     ionViewWillLoad() {
         if (!this.auth.isLoggedIn()) {
