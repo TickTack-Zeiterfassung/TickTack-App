@@ -8,3 +8,4 @@ platforms/
 plugins/
 .idea/
 www/
+.sourcemaps/
