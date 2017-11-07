@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>TestPage</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <button ion-button (click)="logout()">Logout</button>
+
+    <!-- USERINFO EXAMPLE -->
+    <ion-card>
+
+        <ion-card-header>
+            Hallo {{userInfo.name}}
+        </ion-card-header>
+
+    </ion-card>
+
+    <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input [(ngModel)]="newUserInfo.name"></ion-input>
+    </ion-item>
+
+    <button ion-button (click)="updateUserInfo()">Update user info</button>
+
+    <!-- PROJECTS EXAMPLE -->
+    <ion-item>
+        <ion-label floating>Id</ion-label>
+        <ion-input [(ngModel)]="id"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Desc</ion-label>
+        <ion-input [(ngModel)]="desc"></ion-input>
+    </ion-item>
+
+    <button ion-button (click)="createNewProject()">Insert new project</button>
+    <button ion-button (click)="updateProject()">Update project</button>
+
+    <ion-list>
+
+        <ion-card *ngFor="let project of projects">
+
+            <ion-card-header>
+                ID: {{project?.id}}
+            </ion-card-header>
+
+            <ion-card-content>
+                <ion-label>{{project?.desc}}</ion-label>
+                <button ion-button (click)="deleteProject(project)">Delete me</button>
+            </ion-card-content>
+
+        </ion-card>
+
+    </ion-list>
+
+</ion-content>

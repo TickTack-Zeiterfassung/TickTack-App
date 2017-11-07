@@ -58,4 +58,13 @@ export class ProjectProvider {
         return this.dataProvider.insert('projects', project);
     }
 
+    /**
+     * Updatet das übergebende Projekt in dem Backend.
+     * @param {Project} project
+     * @returns {Promise<boolean>}
+     */
+    update(project: Project) {
+        return this.dataProvider.update('projects', project, project.id);
+    }
+
 }

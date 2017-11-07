@@ -127,7 +127,7 @@ export class FirebaseAuthProvider implements IAuthProvider {
     public getUserId(): string {
 
         if (!this.aFAuth.auth) {
-            console.warn('Tried to get user id altrough there is no user logged in.');
+            console.warn('Tried to get userInfo id altrough there is no userInfo logged in.');
             return '';
         }
 

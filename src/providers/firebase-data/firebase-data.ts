@@ -29,10 +29,12 @@ export class FirebaseDataProvider implements IDataProvider {
         this.waitForLogin();
     }
 
+    /**
+     * Initialisiert das lokale Benutzerdatenobjekt.
+     */
     private initUserData(): void {
         this.userData = {
-            user: {
-                email: '',
+            userinfo: {
                 name: ''
             },
             projects: [],
@@ -40,6 +42,9 @@ export class FirebaseDataProvider implements IDataProvider {
         };
     }
 
+    /**
+     * Initialisiert das lokale Observable.
+     */
     private initDataSubject(): void {
         this.dataSubject = new BehaviorSubject(this.userData);
     }
@@ -53,7 +58,7 @@ export class FirebaseDataProvider implements IDataProvider {
 
         this.auth.isLoggedInAsObservable().subscribe(result => {
             if (result) {
-                console.log('load user data');
+                console.log('load userInfo data');
                 this.loadUserData();
             }
         })
@@ -70,7 +75,7 @@ export class FirebaseDataProvider implements IDataProvider {
             .subscribe(data => {
 
                 if (data === null) {
-                    console.log('Create empty user object.');
+                    console.log('Create empty userInfo object.');
                     this.createUserDataObject();
                 } else {
                     // Speicher die neuen Benutzerdaten aus der Datenbank
@@ -87,10 +92,14 @@ export class FirebaseDataProvider implements IDataProvider {
      */
     private createUserDataObject(): void {
         this.saveUserData().catch(
-            e => console.error('Failed to save Userdata.')
+            e => console.warn('Failed to save Userdata.')
         );
     }
 
+    /**
+     * Speichert das aktuelle Benutzerdaten-Objekt.
+     * @returns {Promise<void>}
+     */
     private saveUserData(): Promise<void> {
         return this.db.object(this.getUidPath()).update(this.userData);
     }
@@ -121,25 +130,40 @@ export class FirebaseDataProvider implements IDataProvider {
      */
     private keyMapping(userData: any, itemName: string, id: string): any {
 
-        if (!this.userData && !this.userData[itemName]) {
-            console.error('Tried to access' + itemName + ' of userdata, but nothing like that exisits.');
+        if (!this.userData || !this.userData.hasOwnProperty(itemName)) {
+            console.warn('Tried to access ' + itemName + ' of userdata, but nothing like that exisits.');
             return null;
         }
 
         if (id != null) {
 
             if (!userData[itemName].hasOwnProperty(id)) {
-                console.error('Tried to access key ' + id + ' of userdata/'+ itemName +', but nothing like that exisits.');
+                console.warn('Tried to access key ' + id + ' of userdata/'+ itemName +', but nothing like that exisits.');
                 return null;
             }
 
             return userData[itemName][id];
 
         } else {
-            return userData[itemName];
+
+            if(userData[itemName] instanceof Array) {
+
+                // Falls Array map ID
+                userData[itemName].forEach((obj: any, index: number) => {
+                    obj['id'] = index;
+                });
+            }
+
+            return this.userData[itemName];
         }
     }
 
+    /**
+     * Erstellt ein neues Objekt unter dem entsprechenden Pfad.
+     * @param {string} itemName "Tabellenbezeichnung"
+     * @param item Objekt das gespeichert werden soll
+     * @returns {Promise<boolean>}
+     */
     public insert(itemName: string, item: any): Promise<boolean> {
 
         return new Promise((resolve) => {
@@ -155,10 +179,43 @@ export class FirebaseDataProvider implements IDataProvider {
         });
     }
 
-    public update(itemName: string, item: any, id: string): Promise<boolean> {
-        return null;
+    /**
+     * Updated ein vorhandenes Objekt.
+     * @param {string} itemName "Tabellenbezeichnung"
+     * @param item Objekt das geupdatet werden soll
+     * @param {string} id des Objektes; null falls es kein Array ist
+     * @returns {Promise<boolean>}
+     */
+    public update(itemName: string, item: any, id: string = null): Promise<boolean> {
+        return new Promise(resolve => {
+            if(!this.userData.hasOwnProperty(itemName)) {
+                console.warn('Tried to access ' + itemName + ' of userdata, but its not available.');
+                resolve(false);
+            }
+
+            if(!this.userData[itemName].hasOwnProperty(id)) {
+                console.warn('Tried to access object with id ' + id + ' of ' + itemName + '/ userdata, but its not available.');
+                resolve(false);
+            }
+
+            if(id === null) {
+                this.userData[itemName] = item;
+            } else {
+                this.userData[itemName][id] = item;
+            }
+
+            this.saveUserData()
+                .then(r => resolve(true))
+                .catch(r => resolve(false));
+        });
     }
 
+    /**
+     * Löscht ein Objekt aus der Datenbank
+     * @param {string} itemName
+     * @param {string} id
+     * @returns {Promise<boolean>}
+     */
     public delete(itemName: string, id: string): Promise<boolean> {
         return new Promise((resolve => {
             if(!this.userData.hasOwnProperty(itemName)) {
@@ -170,7 +227,11 @@ export class FirebaseDataProvider implements IDataProvider {
                 resolve(true);
             }
 
-            this.userData[itemName][id] = null;
+            const index = this.userData[itemName].indexOf(this.userData[itemName][id], 0);
+            if (index > -1) {
+                this.userData[itemName].splice(index, 1);
+            }
+
             this.saveUserData()
                 .then(r => resolve(true))
                 .catch(r => resolve(false));
@@ -178,6 +239,10 @@ export class FirebaseDataProvider implements IDataProvider {
     }
 
 
+    /**
+     * Liefert den Nutzerpfad
+     * @returns {string}
+     */
     private getUidPath() {
         return '/' + this.auth.getUserId() + '/';
     }
