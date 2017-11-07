@@ -7,7 +7,9 @@ import { IAuthProvider } from "../../providers/i-auth-provider";
  * Seite zum Registrieren eines neuen Nutzers.
  */
 
-@IonicPage()
+@IonicPage({
+    segment: 'register'
+})
 @Component({
     selector: 'page-register',
     templateUrl: 'register-page.html',

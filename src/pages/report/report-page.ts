@@ -7,7 +7,9 @@ import { IAuthProvider } from '../../providers/i-auth-provider';
  * Liefert eine Auswertung über alle erfassten zeiten
  */
 
-@IonicPage()
+@IonicPage({
+    segment: 'report'
+})
 @Component({
     selector: 'page-report',
     templateUrl: 'report-page.html',

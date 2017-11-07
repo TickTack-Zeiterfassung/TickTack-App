@@ -6,10 +6,12 @@ import { IAuthProvider } from "../../providers/i-auth-provider";
  * @author Matthias
  * Seite zum Login der Nutzer in der App.
  */
-@IonicPage()
+@IonicPage({
+    segment: 'login'
+})
 @Component({
     selector: 'page-login',
-    templateUrl: 'login-page.html',
+    templateUrl: 'login-page-page.html',
 })
 export class LoginPage {
 

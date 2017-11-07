@@ -12,7 +12,9 @@ import { ProjectProvider } from '../../providers/project-provider';
  * Testen der Datenbank-Funktionen
  */
 
-@IonicPage()
+@IonicPage({
+    segment: 'test'
+})
 @Component({
     selector: 'page-test',
     templateUrl: 'test-page.html',
