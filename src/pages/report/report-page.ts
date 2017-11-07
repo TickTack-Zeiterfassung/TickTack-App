@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
-import {IAuthProvider} from '../../providers/i-auth-provider/i-auth-provider';
+import { Component } from '@angular/core';
+import { IonicPage, NavController } from 'ionic-angular';
+import { IAuthProvider } from '../../providers/i-auth-provider';
 
 /**
  * @Author Marcel

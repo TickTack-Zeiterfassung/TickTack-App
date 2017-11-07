@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
-import {IAuthProvider} from "../../providers/i-auth-provider/i-auth-provider";
+import { Component } from '@angular/core';
+import { IonicPage, NavController } from 'ionic-angular';
+import { IAuthProvider } from "../../providers/i-auth-provider";
 
 /**
  * @author Matthias
@@ -22,15 +22,17 @@ export class RegisterPage {
     }
 
     ionViewWillLoad() {
-        console.log('Check auth.');
-        if (this.auth.isLoggedIn()) {
-            this.navCtrl.setRoot('CaptureTimePage');
-        }
+
+        this.auth.isLoggedIn().then(loggedIn => {
+            if(loggedIn) {
+                this.navCtrl.setRoot('CaptureTimePage');
+            }
+        });
     }
 
     register(): void {
-        this.auth.register(this.email, this.password).then(result => {
-            if (result) {
+        this.auth.register(this.email, this.password).then(loggedIn => {
+            if (loggedIn) {
                 this.navCtrl.setRoot('CaptureTimePage');
             }
         })
