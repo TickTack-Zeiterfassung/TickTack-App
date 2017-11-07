@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { IAuthProvider } from "../../providers/i-auth/i-auth";
+import { IAuthProvider } from "../../providers/i-auth-provider";
 
 /**
  * @author Matthias
  * Seite zum Registrieren eines neuen Nutzers.
  */
 
-@IonicPage()
+@IonicPage({
+    segment: 'register'
+})
 @Component({
     selector: 'page-register',
-    templateUrl: 'register.html',
+    templateUrl: 'register-page.html',
 })
 export class RegisterPage {
 

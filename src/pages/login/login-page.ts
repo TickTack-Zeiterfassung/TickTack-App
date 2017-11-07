@@ -1,23 +1,26 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { IAuthProvider } from "../../providers/i-auth/i-auth";
+import { IAuthProvider } from "../../providers/i-auth-provider";
 
 /**
  * @author Matthias
  * Seite zum Login der Nutzer in der App.
  */
-@IonicPage()
+@IonicPage({
+    segment: 'login'
+})
 @Component({
     selector: 'page-login',
-    templateUrl: 'login.html',
+    templateUrl: 'login-page.html',
 })
 export class LoginPage {
 
     email: string;
     password: string;
 
-    constructor(public navCtrl: NavController, private auth: IAuthProvider) {
-    }
+    constructor(public navCtrl: NavController,
+                private auth: IAuthProvider
+    ) {}
 
     ionViewWillLoad() {
 
