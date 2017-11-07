@@ -11,7 +11,7 @@ import { IAuthProvider } from "../../providers/i-auth-provider";
 })
 @Component({
     selector: 'page-login',
-    templateUrl: 'login-page-page.html',
+    templateUrl: 'login-page.html',
 })
 export class LoginPage {
 
