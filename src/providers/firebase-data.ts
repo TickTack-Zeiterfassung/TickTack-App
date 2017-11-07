@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 import { AngularFireDatabase } from "angularfire2/database";
-import { IDataProvider } from "../i-data/i-data";
-import { FirebaseAuthProvider } from "../firebase-auth/firebase-auth";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { IDataProvider } from './i-data-provider';
+import { FirebaseAuthProvider } from './firebase-auth-provider';
 
 /**
  * @author Matthias

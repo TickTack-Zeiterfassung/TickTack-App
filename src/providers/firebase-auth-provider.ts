@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { IAuthProvider } from "../i-auth/i-auth";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
 
 import 'rxjs/add/operator/toPromise';
+import { IAuthProvider } from './i-auth-provider';
 
 /**
  * @author Matthias

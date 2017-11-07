@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { IAuthProvider } from "../../providers/i-auth/i-auth";
+import { IAuthProvider } from '../../providers/i-auth-provider';
 
 /**
  * @Author Marcel
@@ -8,10 +8,12 @@ import { IAuthProvider } from "../../providers/i-auth/i-auth";
  * Seite zum Aufnehmen der Zeit
  */
 
-@IonicPage()
+@IonicPage({
+    segment: 'capture-time'
+})
 @Component({
     selector: 'page-capture-time',
-    templateUrl: 'capture-time.html',
+    templateUrl: 'capture-time-page.html',
 })
 export class CaptureTimePage {
 

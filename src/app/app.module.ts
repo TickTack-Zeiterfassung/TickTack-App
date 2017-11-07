@@ -6,20 +6,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 
-import { IDataProvider } from '../providers/i-data/i-data';
-import { FirebaseDataProvider } from '../providers/firebase-data/firebase-data';
+import { IDataProvider } from '../providers/i-data-provider';
+import { FirebaseDataProvider } from '../providers/firebase-data';
 
-import { ProjectProvider } from '../providers/project/project';
-import { UserInfoProvider } from '../providers/user-info/user-info';
+import { ProjectProvider } from '../providers/project-provider';
+import { UserInfoProvider } from '../providers/user-info-provider';
 
-import { IAuthProvider } from '../providers/i-auth/i-auth';
-import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
+import { IAuthProvider } from '../providers/i-auth-provider';
+import { FirebaseAuthProvider } from '../providers/firebase-auth-provider';
 
 import { AngularFireModule } from "angularfire2";
 import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireDatabaseModule } from "angularfire2/database";
-import { CapturedTimeProvider } from '../providers/captured-time/captured-time';
+import { CapturedTimeProvider } from '../providers/captured-time-provider';
 
 @NgModule({
     declarations: [

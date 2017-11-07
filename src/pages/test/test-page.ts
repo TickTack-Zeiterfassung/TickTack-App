@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { ProjectProvider } from "../../providers/project/project";
 import { Project } from "../../models/project";
-import { IAuthProvider } from "../../providers/i-auth/i-auth";
 import { UserInfo } from "../../models/user-info";
-import { UserInfoProvider } from "../../providers/user-info/user-info";
+import { UserInfoProvider } from "../../providers/user-info-provider";
+import { IAuthProvider } from '../../providers/i-auth-provider';
+import { ProjectProvider } from '../../providers/project-provider';
 
 /**
  * @Author Matthias
@@ -12,10 +12,12 @@ import { UserInfoProvider } from "../../providers/user-info/user-info";
  * Testen der Datenbank-Funktionen
  */
 
-@IonicPage()
+@IonicPage({
+    segment: 'test'
+})
 @Component({
     selector: 'page-test',
-    templateUrl: 'test.html',
+    templateUrl: 'test-page.html',
 })
 export class TestPage {
 
