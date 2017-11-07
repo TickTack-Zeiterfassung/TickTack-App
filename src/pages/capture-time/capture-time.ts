@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { ProjectProvider } from "../../providers/project/project";
-import { Project } from "../../model/project";
 import { IAuthProvider } from "../../providers/i-auth/i-auth";
 
 /**
@@ -17,33 +15,31 @@ import { IAuthProvider } from "../../providers/i-auth/i-auth";
 })
 export class CaptureTimePage {
 
-    private testProject: Project;
-
     constructor(private auth: IAuthProvider,
-                public navCtrl: NavController,
-                public projectProvider: ProjectProvider) {
+                public navCtrl: NavController,) {
     }
 
-    ionViewWillLoad() {
-        if (!this.auth.isLoggedIn()) {
-            this.navCtrl.setRoot('LoginPage');
-        }
-    }
+    ionViewWillLoad(): void {
 
-    ionViewDidLoad() {
-        this.testProject = this.projectProvider.getById('1');
-        console.log(this.testProject);
+        this.auth.isLoggedIn()
+            .then(loggedIn => {
+                    if (!loggedIn) {
+                        this.navCtrl.setRoot('LoginPage');
+                    }
+                }
+            );
     }
 
     /**
      * Logout-Funktion
      */
-    logout() {
-        this.auth.logout().then(result => {
-            if (result) {
-                this.navCtrl.setRoot('LoginPage');
-            }
-        })
+    logout(): void {
+        this.auth.logout()
+            .then(result => {
+                    if (result) {
+                        this.navCtrl.setRoot('LoginPage');
+                    }
+                }
+            );
     }
-
 }

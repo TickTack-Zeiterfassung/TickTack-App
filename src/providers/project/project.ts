@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { IDataProvider } from "../i-data/i-data";
-import { Project } from "../../model/project";
+import { Project } from "../../models/project";
+import { Observable } from "rxjs/Observable";
 
 /**
  * @Author Matthias
@@ -18,26 +19,52 @@ export class ProjectProvider {
     constructor(public dataProvider: IDataProvider) {
     }
 
-    getById(id: string) {
-        return <Project>this.dataProvider.get('Project', id);
+    /**
+     * Liefert asynchron das angeforderte Projekt.
+     * @param {string} id
+     * @returns {Observable<Project>}
+     */
+    getById(id: string): Observable<Project> {
+        return this.dataProvider.get('projects', id).map(value => {
+            return value as Project;
+        });
     }
 
     /**
-     * TODO
+     * Liefert asynchon alle Projekte des Benutzers.
+     * @returns {Observable<Project[]>}
+     */
+    getAll(): Observable<Project[]> {
+        return this.dataProvider.get('projects', null).map(value => {
+            return value as Array<Project>;
+        });
+    }
+
+    /**
      * Loescht eine Instanz aus dem Backend.
      * @param {string} id
+     * @returns {Promise<boolean>}
      */
-    deleteById(id: string) {
-
+    deleteById(id: string): Promise<boolean> {
+        return this.dataProvider.delete('projects', id);
     }
 
     /**
-     * TODO
-     * Speichert/Erstellt eine Instanz in dem Backend.
+     * Erstellt eine Instanz in dem Backend.
      * @param {Project} project
+     * @returns {Promise<boolean>}
      */
-    save(project: Project) {
+    insert(project: Project) {
+        return this.dataProvider.insert('projects', project);
+    }
 
+    /**
+     * Updatet das übergebende Projekt in dem Backend.
+     * @param {Project} project
+     * @returns {Promise<boolean>}
+     */
+    update(project: Project) {
+        return this.dataProvider.update('projects', project, project.id);
     }
 
 }

@@ -20,7 +20,8 @@ export class MyApp {
         this.pages = [
             {title: 'Erfassung', component: 'CaptureTimePage'},
             {title: 'Projekte', component: 'ProjectsPage'},
-            {title: 'Auswertung', component: 'ReportPage'}
+            {title: 'Auswertung', component: 'ReportPage'},
+            {title: 'Datenbank-Tests', component: 'TestPage'}
         ];
     }
 
