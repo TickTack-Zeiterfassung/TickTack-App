@@ -11,17 +11,19 @@ export class MyApp {
 
     rootPage: any = 'LoginPage';
 
-    pages: Array<{ title: string, component: any }>;
+    pages: Array<{ title: string, icon: string, component: any }>;
 
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
         this.pages = [
-            {title: 'Erfassung', component: 'CaptureTimePage'},
-            {title: 'Projekte', component: 'ProjectsPage'},
-            {title: 'Auswertung', component: 'ReportPage'},
-            {title: 'Datenbank-Tests', component: 'TestPage'}
+            {title: 'Zeiterfassung', icon: 'time', component: 'CaptureTimePage'},
+            {title: 'Projekte', icon: 'clipboard', component: 'ProjectsPage'},
+            {title: 'Auswertungen', icon: 'stats', component: 'ReportPage'},
+            {title: 'Einstellungen', icon: 'build', component: 'SettingsPage'},
+            {title: 'Hilfe', icon: 'help-circle', component: 'HelpPage'},
+            {title: 'Datenbank-Tests', icon: '', component: 'TestPage'}
         ];
     }
 
