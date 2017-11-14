@@ -8,34 +8,8 @@
 </ion-header>
 
 <ion-content>
-    <ion-slides pager>
-        <ion-slide style="background-color: orange">
-            <ion-fab center class="big">
-                <button ion-fab>
-                    <ion-icon name="pause"></ion-icon>
-                </button>
-            </ion-fab>
-
-            <ion-fab center class="small">
-                <button ion-fab mini>
-                    <ion-icon name="square"></ion-icon>
-                </button>
-            </ion-fab>
-        </ion-slide>
-        <ion-slide style="background-color: green">
-            <ion-fab center class="big">
-                <button ion-fab>
-                    <ion-icon name="pause"></ion-icon>
-                </button>
-            </ion-fab>
-
-            <ion-fab center class="small">
-                <button ion-fab mini>
-                    <ion-icon name="square"></ion-icon>
-                </button>
-            </ion-fab>
-        </ion-slide>
-        <ion-slide style="background-color: red">
+    <ion-slides [loop]="true" pager>
+        <ion-slide *ngFor="let slide of slides" [style.backgroundColor]="slide.color">
             <ion-fab center class="big">
                 <button ion-fab>
                     <ion-icon name="pause"></ion-icon>
