@@ -20,6 +20,7 @@ import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { CapturedTimeProvider } from '../providers/captured-time-provider';
+import { UserInterfaceProvider } from '../services/user-interface-service';
 
 @NgModule({
     declarations: [
@@ -49,8 +50,8 @@ import { CapturedTimeProvider } from '../providers/captured-time-provider';
         CapturedTimeProvider,
 
         FirebaseAuthProvider,
-        {provide: IAuthProvider, useClass: FirebaseAuthProvider}
-
+        {provide: IAuthProvider, useClass: FirebaseAuthProvider},
+        UserInterfaceProvider,
     ]
 })
 export class AppModule {
