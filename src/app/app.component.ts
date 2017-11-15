@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IAuthProvider } from '../providers/i-auth-provider';
 
 @Component({
     templateUrl: 'app.html'
@@ -11,17 +12,23 @@ export class MyApp {
 
     rootPage: any = 'LoginPage';
 
-    pages: Array<{ title: string, component: any }>;
+    pages: Array<{ title: string, icon: string, component: any }>;
 
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public platform: Platform,
+                public statusBar: StatusBar,
+                public splashScreen: SplashScreen,
+                private auth: IAuthProvider,
+    ) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
         this.pages = [
-            {title: 'Erfassung', component: 'CaptureTimePage'},
-            {title: 'Projekte', component: 'ProjectsPage'},
-            {title: 'Auswertung', component: 'ReportPage'},
-            {title: 'Datenbank-Tests', component: 'TestPage'}
+            {title: 'Zeiterfassung', icon: 'time', component: 'CaptureTimePage'},
+            {title: 'Projekte', icon: 'clipboard', component: 'ProjectsPage'},
+            {title: 'Auswertungen', icon: 'stats', component: 'ReportPage'},
+            {title: 'Einstellungen', icon: 'build', component: 'SettingsPage'},
+            {title: 'Hilfe', icon: 'help-circle', component: 'HelpPage'},
+            {title: 'Datenbank-Tests', icon: '', component: 'TestPage'}
         ];
     }
 
@@ -38,6 +45,19 @@ export class MyApp {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
+    }
+
+    /**
+     * Logout-Funktion
+     */
+    logout(): void {
+        this.auth.logout()
+            .then(result => {
+                    if (result) {
+                        this.nav.setRoot('LoginPage');
+                    }
+                }
+            );
     }
 }
 

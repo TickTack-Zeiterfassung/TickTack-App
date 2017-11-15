@@ -1,3 +1,6 @@
+$fab-size: 220px;
+$fab-mini-size: 70px;
+
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
@@ -34,9 +37,9 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:        #283593,
-  primaryLight:   #5f5fc4,
-  primaryDark:    #001064,
+  primary:        #00695c,
+  primaryLight:   #439889,
+  primaryDark:    #003d33,
   primaryText:    #ffffff,
   secondary:      #b71c1c,
   secondaryLight: #f05545,

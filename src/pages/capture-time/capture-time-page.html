@@ -3,10 +3,25 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Erfassung</ion-title>
+        <ion-title>Zeiterfassung</ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <button ion-button (click)="logout()">Logout</button>
+<ion-content>
+    <ion-slides [loop]="true" pager>
+        <ion-slide *ngFor="let slide of slides" [style.backgroundColor]="slide.color">
+            <ion-fab center class="big">
+                <button ion-fab>
+                    <ion-icon name="pause"></ion-icon>
+                </button>
+            </ion-fab>
+
+            <ion-fab center class="small">
+                <button ion-fab mini>
+                    <ion-icon name="square"></ion-icon>
+                </button>
+            </ion-fab>
+        </ion-slide>
+    </ion-slides>
+
 </ion-content>

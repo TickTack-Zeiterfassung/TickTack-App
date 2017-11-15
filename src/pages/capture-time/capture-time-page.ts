@@ -16,13 +16,18 @@ import { IAuthProvider } from '../../providers/i-auth-provider';
     templateUrl: 'capture-time-page.html',
 })
 export class CaptureTimePage {
+    slides = [
+        { color: 'green' },
+        { color: 'red' },
+        { color: 'yellow' },
+        { color: 'pink' },
+    ];
 
     constructor(private auth: IAuthProvider,
                 public navCtrl: NavController,) {
     }
 
     ionViewWillLoad(): void {
-
         this.auth.isLoggedIn()
             .then(loggedIn => {
                     if (!loggedIn) {
@@ -32,16 +37,5 @@ export class CaptureTimePage {
             );
     }
 
-    /**
-     * Logout-Funktion
-     */
-    logout(): void {
-        this.auth.logout()
-            .then(result => {
-                    if (result) {
-                        this.navCtrl.setRoot('LoginPage');
-                    }
-                }
-            );
-    }
+
 }
