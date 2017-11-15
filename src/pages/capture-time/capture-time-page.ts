@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, Slides } from 'ionic-angular';
 import { IAuthProvider } from '../../providers/i-auth-provider';
 
 /**
@@ -16,15 +16,19 @@ import { IAuthProvider } from '../../providers/i-auth-provider';
     templateUrl: 'capture-time-page.html',
 })
 export class CaptureTimePage {
-    slides = [
+    @ViewChild(Slides) slides: Slides;
+
+    projects = [
         { color: 'green' },
         { color: 'red' },
         { color: 'yellow' },
         { color: 'pink' },
+        { color: 'blue' },
     ];
 
     constructor(private auth: IAuthProvider,
                 public navCtrl: NavController,) {
+        document.addEventListener('scroll', function (e) { e.preventDefault(); }, false);
     }
 
     ionViewWillLoad(): void {
@@ -37,5 +41,8 @@ export class CaptureTimePage {
             );
     }
 
+    slideChanged(): void {
+        console.log(this.slides.getActiveIndex());
+    }
 
 }
