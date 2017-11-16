@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Project } from "../models/project";
 import { Observable } from "rxjs/Observable";
 import { IDataProvider } from './i-data-provider';
+import { Project } from '../models/project.interface';
 
 /**
  * @Author Matthias

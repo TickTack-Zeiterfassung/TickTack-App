@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { Project } from "../../models/project";
 import { UserInfo } from "../../models/user-info";
 import { UserInfoProvider } from "../../providers/user-info-provider";
 import { IAuthProvider } from '../../providers/i-auth-provider';
 import { ProjectProvider } from '../../providers/project-provider';
+import { Project } from '../../models/project.interface';
 
 /**
  * @Author Matthias
