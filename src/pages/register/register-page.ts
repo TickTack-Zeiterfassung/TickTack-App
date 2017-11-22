@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, MenuController, NavController } from 'ionic-angular';
 import { IAuthProvider } from "../../providers/i-auth-provider";
 
 /**
@@ -20,7 +20,16 @@ export class RegisterPage {
     password: string;
 
     constructor(private auth: IAuthProvider,
-                public navCtrl: NavController) {
+                public navCtrl: NavController,
+                private menu: MenuController) {
+    }
+
+    ionViewDidEnter() {
+        this.menu.enable(false);
+    }
+
+    ionViewWillLeave() {
+        this.menu.enable(true);
     }
 
     ionViewWillLoad() {
