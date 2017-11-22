@@ -5,6 +5,7 @@ import { AngularFireDatabase } from "angularfire2/database";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { IDataProvider } from './i-data-provider';
 import { FirebaseAuthProvider } from './firebase-auth-provider';
+import { Subscription } from "rxjs/Subscription";
 
 /**
  * @author Matthias
@@ -20,6 +21,8 @@ export class FirebaseDataProvider implements IDataProvider {
 
     private userData: object;
     private dataSubject: BehaviorSubject<any>;
+
+    private dataObservable: Subscription;
 
     constructor(private auth: FirebaseAuthProvider,
                 private db: AngularFireDatabase) {
@@ -60,6 +63,10 @@ export class FirebaseDataProvider implements IDataProvider {
             if (result) {
                 console.log('load userInfo data');
                 this.loadUserData();
+            } else {
+                if(this.dataObservable) {
+                    this.dataObservable.unsubscribe();
+                }
             }
         })
 
@@ -71,20 +78,19 @@ export class FirebaseDataProvider implements IDataProvider {
      */
     private loadUserData(): void {
 
-        this.db.object(this.getUidPath()).valueChanges()
-            .subscribe(data => {
+        this.dataObservable = this.db.object(this.getUidPath()).valueChanges().subscribe(data => {
 
-                if (data === null) {
-                    console.log('Create empty userInfo object.');
-                    this.createUserDataObject();
-                } else {
-                    // Speicher die neuen Benutzerdaten aus der Datenbank
-                    this.userData = data;
+            if (data === null) {
+                console.log('Create empty userInfo object.');
+                this.createUserDataObject();
+            } else {
+                // Speicher die neuen Benutzerdaten aus der Datenbank
+                this.userData = data;
 
-                    // Sende die neuen Daten an alle Subscriber
-                    this.dataSubject.next(data);
-                }
-            });
+                // Sende die neuen Daten an alle Subscriber
+                this.dataSubject.next(data);
+            }
+        });
     }
 
     /**
