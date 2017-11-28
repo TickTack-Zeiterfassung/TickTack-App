@@ -18,5 +18,7 @@
   "title.projects":"Projekte",
   "title.register":"Registrieren",
   "title.reports":"Auswertung",
-  "title.settings":"Einstellungen"
+  "title.settings":"Einstellungen",
+
+  "toast.project-time-recorded":"Die Projektzeit wurde erfasst."
 }

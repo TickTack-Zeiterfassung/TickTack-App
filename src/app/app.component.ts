@@ -41,7 +41,7 @@ export class MyApp {
             {title: 'title.capture-time', icon: 'time', component: 'CaptureTimePage'},
             {title: 'title.projects', icon: 'clipboard', component: 'ProjectsPage'},
             {title: 'title.reports', icon: 'stats', component: 'ReportsPage'},
-            {title: 'settings.title', icon: 'build', component: 'SettingsPage'},
+            {title: 'title.settings', icon: 'build', component: 'SettingsPage'},
             {title: 'title.help', icon: 'help-circle', component: 'HelpPage'},
             {title: 'Datenbank-Tests', icon: '', component: 'TestPage'}
         ];

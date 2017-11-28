@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides } from 'ionic-angular';
 import { IAuthProvider } from '../../providers/i-auth-provider';
+import { TranslateService } from '@ngx-translate/core';
 import { Project } from '../../models/project.interface';
 import { UserInterfaceProvider } from '../../services/user-interface-service';
 
@@ -40,7 +41,8 @@ export class CaptureTimePage {
 
     constructor(private auth: IAuthProvider,
                 public navCtrl: NavController,
-                private uiService: UserInterfaceProvider
+                private uiService: UserInterfaceProvider,
+                private translate: TranslateService
     ) {}
 
     ionViewWillLoad(): void {
@@ -94,7 +96,7 @@ export class CaptureTimePage {
         this.recordedTime = 0;
 
         this.slides.lockSwipes(false);
-        this.uiService.presentToast('Die Projektzeit wurde erfasst');
+        this.uiService.presentToast(this.translate.instant('toast.project-time-recorded'));
     }
 
     startInterval(): void {
