@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IAuthProvider } from '../providers/i-auth-provider';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     templateUrl: 'app.html'
@@ -18,21 +19,14 @@ export class MyApp {
                 public statusBar: StatusBar,
                 public splashScreen: SplashScreen,
                 private auth: IAuthProvider,
+                private translate: TranslateService
     ) {
         this.initializeApp();
-
-        // used for an example of ngFor and navigation
-        this.pages = [
-            {title: 'Zeiterfassung', icon: 'time', component: 'CaptureTimePage'},
-            {title: 'Projekte', icon: 'clipboard', component: 'ProjectsPage'},
-            {title: 'Auswertungen', icon: 'stats', component: 'ReportPage'},
-            {title: 'Einstellungen', icon: 'build', component: 'SettingsPage'},
-            {title: 'Hilfe', icon: 'help-circle', component: 'HelpPage'},
-            {title: 'Datenbank-Tests', icon: '', component: 'TestPage'}
-        ];
+        this.translate.setDefaultLang('de');
+        this.setPages();
     }
 
-    initializeApp() {
+    initializeApp(): void {
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -41,7 +35,19 @@ export class MyApp {
         });
     }
 
-    openPage(page) {
+    setPages(): void {
+        // used for an example of ngFor and navigation
+        this.pages = [
+            {title: 'title.capture-time', icon: 'time', component: 'CaptureTimePage'},
+            {title: 'title.projects', icon: 'clipboard', component: 'ProjectsPage'},
+            {title: 'title.reports', icon: 'stats', component: 'ReportsPage'},
+            {title: 'settings.title', icon: 'build', component: 'SettingsPage'},
+            {title: 'title.help', icon: 'help-circle', component: 'HelpPage'},
+            {title: 'Datenbank-Tests', icon: '', component: 'TestPage'}
+        ];
+    }
+
+    openPage(page): void {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
