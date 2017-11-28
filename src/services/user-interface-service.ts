@@ -14,9 +14,9 @@ export class UserInterfaceProvider {
 
     /**
      * Zeigt einen Toast auf der Oberfläche
-     * @param {string} message Anzuzeigende Nachricht
-     * @param {number} duration Dauer des Toasts
-     * @param {string} position Position des Toasts. Mögliche Werte sind 'top', 'bottom', 'middle'
+     * @param {string} message: Anzuzeigende Nachricht
+     * @param {number} duration: Dauer des Toasts
+     * @param {string} position: Position des Toasts. Mögliche Werte sind 'top', 'bottom', 'middle'
      */
     presentToast(message: string, duration: number = 3000, position: string = 'bottom') {
         let toast = this.toast.create({
