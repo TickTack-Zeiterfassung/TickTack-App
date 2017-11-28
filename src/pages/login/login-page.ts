@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, MenuController, NavController } from 'ionic-angular';
 import { IAuthProvider } from "../../providers/i-auth-provider";
 
 /**
@@ -19,13 +19,22 @@ export class LoginPage {
     password: string;
 
     constructor(public navCtrl: NavController,
-                private auth: IAuthProvider
-    ) {}
+                private auth: IAuthProvider,
+                private menu: MenuController) {
+    }
+
+    ionViewDidEnter() {
+        this.menu.enable(false);
+    }
+
+    ionViewWillLeave() {
+        this.menu.enable(true);
+    }
 
     ionViewWillLoad() {
 
         this.auth.isLoggedIn().then(loggedIn => {
-            if(loggedIn) {
+            if (loggedIn) {
                 this.navCtrl.setRoot('CaptureTimePage');
             }
         });
