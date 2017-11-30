@@ -1,0 +1,24 @@
+{
+  "button.back":"Zurück",
+  "button.forgot-password":"Passwort vergessen",
+  "button.login":"Anmelden",
+  "button.logout":"Ausloggen",
+  "button.register":"Registrieren",
+
+  "label.confirm-password":"Passwort bestätigen",
+  "label.email":"E-Mail",
+  "label.password":"Passwort",
+  "label.remain-signed-in":"Angemeldet bleiben",
+
+  "title.capture-time":"Zeiterfassung",
+  "title.help":"Hilfe",
+  "title.login":"Anmelden",
+  "title.menu":"Menü",
+  "title.new-project":"Neues Projekt",
+  "title.projects":"Projekte",
+  "title.register":"Registrieren",
+  "title.reports":"Auswertung",
+  "title.settings":"Einstellungen",
+
+  "toast.project-time-recorded":"Die Projektzeit wurde erfasst."
+}

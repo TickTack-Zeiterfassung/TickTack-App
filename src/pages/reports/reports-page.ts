@@ -12,9 +12,9 @@ import { IAuthProvider } from '../../providers/i-auth-provider';
 })
 @Component({
     selector: 'page-report',
-    templateUrl: 'report-page.html',
+    templateUrl: 'reports-page.html',
 })
-export class ReportPage {
+export class ReportsPage {
 
     constructor(private auth: IAuthProvider,
                 public navCtrl: NavController
