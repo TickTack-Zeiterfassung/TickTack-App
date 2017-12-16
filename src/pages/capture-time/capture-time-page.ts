@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides } from 'ionic-angular';
 import { IAuthProvider } from '../../providers/i-auth-provider';
 import { TranslateService } from '@ngx-translate/core';
-import { Project } from '../../models/project.interface';
+import { Project } from '../../models/project.model';
 import { UserInterfaceProvider } from '../../services/user-interface-service';
+import { PROJECT_LIST } from '../../mocks/project.mocks';
 
 /**
  * @Author Marcel
@@ -30,14 +31,7 @@ export class CaptureTimePage {
     isTimeRecording: boolean; // Wird eine Projektzeit aufgenommen?
     isTimePlaying: boolean; // Ist das Aufnehmen pausiert?
 
-    projects: Project[] = [
-        { name: 'Neues Projekt', desc: '', color: 'white' },
-        { name: 'Projekt 1', desc: '', color: 'green' },
-        { name: 'Projekt 2', desc: '', color: 'red' },
-        { name: 'Projekt 3', desc: '', color: 'yellow' },
-        { name: 'Projekt 4', desc: '', color: 'pink' },
-        { name: 'Projekt 5', desc: '', color: 'blue' }
-    ];
+    projects: Project[] = PROJECT_LIST;
 
     constructor(private auth: IAuthProvider,
                 public navCtrl: NavController,

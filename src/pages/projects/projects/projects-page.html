@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'title.projects' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div text-center>
+    <button ion-button color="primary" clear (click)="onClickCreateNewProject()">
+      {{ 'button.create-new-project' | translate }}
+    </button>
+  </div>
+
+  <project-list pageToPush="ProjectDetailPage"></project-list>
+
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title *ngIf="!isNewProject">{{ 'title.projects-details' | translate }}</ion-title>
+    <ion-title *ngIf="isNewProject">{{ 'title.new-project' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button color="light" clear (click)="isNewProject ? saveProject() : editProject()">
+        {{ 'button.save' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label fixed>{{ 'label.project-name' | translate }}</ion-label>
+      <ion-input #name [(ngModel)]="project.name" (ionFocus)="setFocus('name')"></ion-input>
+      <button ion-button icon-only clear item-end (click)="clearTextInput(name)" *ngIf="textInputFocused === 'name'">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>{{ 'label.description' | translate }}</ion-label>
+      <ion-input #description [(ngModel)]="project.desc" (ionFocus)="setFocus('desc')"></ion-input>
+      <button ion-button icon-only clear item-end (click)="clearTextInput(description)" *ngIf="textInputFocused === 'desc'">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'label.color' | translate }}</ion-label>
+      <ion-select [(ngModel)]="project.color" [okText]="('button.ok' | translate)" [cancelText]="('button.cancel' | translate)">
+        <ion-option *ngFor="let color of colors" [value]="color.value">
+          {{ color.name | translate }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'label.active' | translate }}</ion-label>
+      <ion-toggle [(ngModel)]="project.active"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
+
+  <div text-center *ngIf="!isNewProject">
+    <button ion-button color="primary" clear (click)="confirmDeleteProject()">
+      {{ 'button.delete-project' | translate }}
+    </button>
+  </div>
+
+</ion-content>
