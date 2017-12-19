@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ProjectDetailPage } from './project-detail';
+import { ProjectDetailPage } from './project-detail-page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({

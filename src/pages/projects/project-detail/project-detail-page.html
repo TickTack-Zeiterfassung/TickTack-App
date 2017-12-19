@@ -3,7 +3,7 @@
     <ion-title *ngIf="!isNewProject">{{ 'title.projects-details' | translate }}</ion-title>
     <ion-title *ngIf="isNewProject">{{ 'title.new-project' | translate }}</ion-title>
     <ion-buttons end>
-      <button ion-button color="light" clear (click)="isNewProject ? saveProject() : editProject()">
+      <button ion-button color="light" clear (click)="isNewProject ? saveNewProject() : editProject()">
         {{ 'button.save' | translate }}
       </button>
     </ion-buttons>

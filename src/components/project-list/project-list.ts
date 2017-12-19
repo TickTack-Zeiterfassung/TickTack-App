@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Project } from '../../models/project.model';
 import { NavController } from 'ionic-angular';
-import { PROJECT_LIST } from '../../mocks/project.mocks';
+import { ProjectProvider } from '../../providers/project-provider';
 
 /**
  * Zeigt eine Liste aller vorhandenen Projekte des ANwenders
@@ -11,15 +11,28 @@ import { PROJECT_LIST } from '../../mocks/project.mocks';
     selector: 'project-list',
     templateUrl: 'project-list.html'
 })
-export class ProjectListComponent {
+export class ProjectListComponent implements OnInit{
   @Input('pageToPush') pageToPush: string;
 
-    projects: Project[] = PROJECT_LIST;
+    projects: Project[];
 
-    constructor(private navCtrl: NavController) {}
+    constructor(private navCtrl: NavController,
+                private projectProvider: ProjectProvider
+    ) {}
+
+    ngOnInit(): void {
+        this.getProjects();
+    }
 
     onSelectProject(project: Project): void {
         this.navCtrl.push(this.pageToPush, { 'project': project });
+    }
+
+    getProjects(): void {
+        this.projectProvider.getAll().subscribe((projects: Project[]) => {
+            this.projects = projects;
+            console.log(projects);
+        });
     }
 
 }

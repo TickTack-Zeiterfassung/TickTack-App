@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides } from 'ionic-angular';
 import { IAuthProvider } from '../../providers/i-auth-provider';
-import { TranslateService } from '@ngx-translate/core';
 import { Project } from '../../models/project.model';
 import { UserInterfaceProvider } from '../../services/user-interface-service';
-import { PROJECT_LIST } from '../../mocks/project.mocks';
+import { ProjectProvider } from '../../providers/project-provider';
+import { Subject } from 'rxjs/Subject';
 
 /**
  * @Author Marcel
@@ -31,12 +31,14 @@ export class CaptureTimePage {
     isTimeRecording: boolean; // Wird eine Projektzeit aufgenommen?
     isTimePlaying: boolean; // Ist das Aufnehmen pausiert?
 
-    projects: Project[] = PROJECT_LIST;
+    activeProjects: Project[];
+
+    private ngUnsubscribe: Subject<any> = new Subject();
 
     constructor(private auth: IAuthProvider,
-                public navCtrl: NavController,
+                private navCtrl: NavController,
                 private uiService: UserInterfaceProvider,
-                private translate: TranslateService
+                private projectProvider: ProjectProvider
     ) {}
 
     ionViewWillLoad(): void {
@@ -47,6 +49,24 @@ export class CaptureTimePage {
                     }
                 }
             );
+
+        this.getActiveProjects();
+    }
+
+    ionViewWillUnload() {
+        this.ngUnsubscribe.next();
+        this.ngUnsubscribe.complete();
+    }
+
+    /**
+     * Holt alle Projekte und filtert alle inaktiven Projekte heraus
+     */
+    getActiveProjects(): void {
+        this.projectProvider.getAll().takeUntil(this.ngUnsubscribe).subscribe((projects: Project[]) => {
+            this.activeProjects = projects.filter((project: Project) => {
+               return project.active;
+            });
+        });
     }
 
     /**
@@ -54,7 +74,7 @@ export class CaptureTimePage {
      * @param event das übergebene Event
      */
     slideChanged(event): void {
-        let project: Project = this.projects[event.realIndex];
+        let project: Project = this.activeProjects[event.realIndex];
         this.title = project.name;
         this.navBarColor = project.color;
     }
@@ -90,16 +110,21 @@ export class CaptureTimePage {
         this.recordedTime = 0;
 
         this.slides.lockSwipes(false);
-        this.uiService.presentToast(this.translate.instant('toast.project-time-recorded'));
+        this.uiService.presentToast('toast.project-time-recorded');
     }
 
+    /**
+     * Zählt jede Sekunde um 1 hoch
+     */
     startInterval(): void {
-        this.recordedTime += 1;
         this.interval = setInterval(() => {
             this.recordedTime += 1;
         }, 1000)
     }
 
+    /**
+     * Beendet das Intervall
+     */
     stopInterval(): void {
         clearInterval(this.interval);
     }

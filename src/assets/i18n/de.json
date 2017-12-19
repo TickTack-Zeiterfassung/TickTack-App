@@ -1,8 +1,13 @@
 {
+  "alert.title.delete-project":"Projekt löschen?",
+  "alert.message.delete-project":"Stimmen Sie zu das Projekt zu löschen? Das kann nicht rückgängig gemacht werden!",
+
+  "button.agree":"Zustimmen",
   "button.back":"Zurück",
   "button.cancel":"Abbrechen",
   "button.create-new-project":"Neues Projekt anlegen",
   "button.delete-project":"Projekt löschen",
+  "button.disagree":"Ablehnen",
   "button.forgot-password":"Passwort vergessen",
   "button.login":"Anmelden",
   "button.logout":"Ausloggen",
@@ -37,5 +42,6 @@
   "title.reports":"Auswertung",
   "title.settings":"Einstellungen",
 
+  "toast.worked":"Das hat geklappt!",
   "toast.project-time-recorded":"Die Projektzeit wurde erfasst."
 }

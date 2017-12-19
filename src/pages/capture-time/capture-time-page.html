@@ -9,7 +9,7 @@
 
 <ion-content>
     <ion-slides (ionSlideDidChange)="slideChanged($event)" [loop]="true">
-        <ion-slide *ngFor="let project of projects" [style.backgroundColor]="project.color">
+        <ion-slide *ngFor="let project of activeProjects" [style.backgroundColor]="project.color">
 
             <!-- Zeitanzeige -->
             <h1 class="timer">{{recordedTime}}</h1>
