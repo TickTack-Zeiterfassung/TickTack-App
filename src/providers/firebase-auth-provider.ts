@@ -6,6 +6,7 @@ import { Observer } from "rxjs/Observer";
 
 import 'rxjs/add/operator/toPromise';
 import { IAuthProvider } from './i-auth-provider';
+import { UserInterfaceProvider } from '../services/user-interface-service';
 
 /**
  * @author Matthias
@@ -19,8 +20,9 @@ export class FirebaseAuthProvider implements IAuthProvider {
     private isUserLoggedInObservable: Observable<boolean>;
     private isUserLoggedInObserver: Observer<boolean>;
 
-    constructor(private aFAuth: AngularFireAuth) {
-
+    constructor(private aFAuth: AngularFireAuth,
+                private uiProvider: UserInterfaceProvider
+    ) {
         this.prepareIsUserLoggedInObservable();
     }
 
@@ -35,15 +37,17 @@ export class FirebaseAuthProvider implements IAuthProvider {
         return new Promise<boolean>(resolve => {
             try {
 
-                this.aFAuth.auth.signInWithEmailAndPassword(email, password).then(result => {
+                this.aFAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
                     resolve(true);
                 }).catch(error => {
                     console.error(error);
+                    this.uiProvider.presentToast(error.message);
                     resolve(false);
                 });
 
             } catch (e) {
                 console.error(e);
+                this.uiProvider.presentToast(e.message);
                 resolve(false);
             }
         });
@@ -54,19 +58,25 @@ export class FirebaseAuthProvider implements IAuthProvider {
      * @returns {Promise<boolean>}
      */
     public async logout(): Promise<boolean> {
+
         return new Promise<boolean>(resolve => {
             try {
-                this.aFAuth.auth.signOut().then(result => {
+
+                this.aFAuth.auth.signOut().then(() => {
                     resolve(true);
                 }).catch(error => {
                     console.error(error);
+                    this.uiProvider.presentToast(error.message);
                     resolve(false);
                 })
+
             } catch (e) {
                 console.error(e);
+                this.uiProvider.presentToast(e.message);
                 resolve(false);
             }
         });
+
     }
 
     /**
@@ -81,15 +91,17 @@ export class FirebaseAuthProvider implements IAuthProvider {
 
             try {
 
-                this.aFAuth.auth.createUserWithEmailAndPassword(email, password).then(result => {
+                this.aFAuth.auth.createUserWithEmailAndPassword(email, password).then(() => {
                     resolve(true);
                 }).catch(error => {
                     console.error(error);
+                    this.uiProvider.presentToast(error.message);
                     resolve(false);
                 });
 
             } catch (e) {
                 console.error(e);
+                this.uiProvider.presentToast(e.message);
                 resolve(false);
             }
 
