@@ -1,0 +1,5 @@
+<ion-list>
+  <button ion-item *ngFor="let project of projects" (click)="onSelectProject(project)">
+    {{ project.name }} - {{ project.desc }}
+  </button>
+</ion-list>

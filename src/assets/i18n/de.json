@@ -1,13 +1,34 @@
 {
+  "alert.title.delete-project":"Projekt löschen?",
+  "alert.message.delete-project":"Stimmen Sie zu das Projekt zu löschen? Das kann nicht rückgängig gemacht werden!",
+
+  "button.agree":"Zustimmen",
   "button.back":"Zurück",
+  "button.cancel":"Abbrechen",
+  "button.create-new-project":"Neues Projekt anlegen",
+  "button.delete-project":"Projekt löschen",
+  "button.disagree":"Ablehnen",
   "button.forgot-password":"Passwort vergessen",
   "button.login":"Anmelden",
   "button.logout":"Ausloggen",
+  "button.ok":"Ok",
   "button.register":"Registrieren",
+  "button.save":"Speichern",
 
+  "color.blue":"Blau",
+  "color.pink":"Pink",
+  "color.green":"Grün",
+  "color.red":"Rot",
+  "color.white":"Weiß",
+  "color.yellow":"Gelb",
+
+  "label.active":"Aktiv",
+  "label.color":"Farbe",
   "label.confirm-password":"Passwort bestätigen",
+  "label.description":"Beschreibung",
   "label.email":"E-Mail",
   "label.password":"Passwort",
+  "label.project-name":"Projektname",
   "label.remain-signed-in":"Angemeldet bleiben",
 
   "title.capture-time":"Zeiterfassung",
@@ -16,9 +37,11 @@
   "title.menu":"Menü",
   "title.new-project":"Neues Projekt",
   "title.projects":"Projekte",
+  "title.projects-details":"Projektdetails",
   "title.register":"Registrieren",
   "title.reports":"Auswertung",
   "title.settings":"Einstellungen",
 
+  "toast.worked":"Das hat geklappt!",
   "toast.project-time-recorded":"Die Projektzeit wurde erfasst."
 }

@@ -5,8 +5,6 @@ import { IDataProvider } from './i-data-provider';
 import { Project } from '../models/project.interface';
 
 /**
- * @Author Matthias
- *
  * ProjectProvider
  * Mithilfe dieser Klasse koennen Instanzen vom Typ Project aus dem Backend:
  *  - erzeugt/geladen

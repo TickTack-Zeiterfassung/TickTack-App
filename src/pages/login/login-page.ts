@@ -33,7 +33,7 @@ export class LoginPage {
 
     ionViewWillLoad() {
 
-        this.auth.isLoggedIn().then(loggedIn => {
+        this.auth.isLoggedIn().then((loggedIn: boolean) => {
             if (loggedIn) {
                 this.navCtrl.setRoot('CaptureTimePage');
             }

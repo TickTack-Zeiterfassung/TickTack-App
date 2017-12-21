@@ -1,5 +1,4 @@
 /**
- * @author Matthias
  * Modell eines UserInfo-Objektes
  */
 export class UserInfo {

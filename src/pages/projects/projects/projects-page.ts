@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { IAuthProvider } from '../../providers/i-auth-provider';
+import { IAuthProvider } from '../../../providers/i-auth-provider';
 
 /**
- * @Author Marcel
- * Seite zum Verwalten aller Projekte
+ * Diese Seite bietet dem Anwender die Möglichkeit ein Projekt auszuwählen, bzw. ein neues zu erstellen
  */
 
 @IonicPage({
@@ -17,7 +16,7 @@ import { IAuthProvider } from '../../providers/i-auth-provider';
 export class ProjectsPage {
 
     constructor(private auth: IAuthProvider,
-                public navCtrl: NavController
+                private navCtrl: NavController
     ) {}
 
     ionViewWillLoad() {
@@ -25,5 +24,10 @@ export class ProjectsPage {
             this.navCtrl.setRoot('LoginPage');
         }
     }
+
+    onClickCreateNewProject(): void {
+        this.navCtrl.push('ProjectDetailPage');
+    }
+
 
 }
