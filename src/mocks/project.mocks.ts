@@ -1,4 +1,4 @@
-import { Project } from '../models/project.model';
+import { Project } from '../models/project.interface';
 
 const projectList: Project[] = [
     {name: 'Neues Projekt', desc: 'My new Project', color: 'white', active: true },

@@ -7,4 +7,4 @@ export const FIREBASE_CONFIG = {
     storageBucket: "ticktack-zeiterfassung.appspot.com",
     messagingSenderId: "272704574745"
 
-}
+};

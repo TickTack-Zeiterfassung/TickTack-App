@@ -1,4 +1,4 @@
-import { Color } from '../models/color.model';
+import { Color } from '../models/color.interface';
 
 const colorList: Color[] = [
     { name: 'color.white', value: 'white' },

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, TextInput } from 'ionic-angular';
-import { Project } from '../../../models/project.model';
-import { Color } from '../../../models/color.model';
+import { Project } from '../../../models/project.interface';
+import { Color } from '../../../models/color.interface';
 import { COLOR_LIST } from '../../../mocks/color.mocks';
 import { ProjectProvider } from '../../../providers/project-provider';
 import { UserInterfaceProvider } from '../../../services/user-interface-service';
@@ -16,7 +16,7 @@ import { UserInterfaceProvider } from '../../../services/user-interface-service'
     templateUrl: 'project-detail-page.html',
 })
 export class ProjectDetailPage {
-    project: Project = new Project();
+    project = {} as Project;
     colors: Color[] = COLOR_LIST;
 
     isNewProject: boolean = true;

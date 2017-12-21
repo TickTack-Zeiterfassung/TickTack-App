@@ -4,7 +4,7 @@ import { UserInfo } from "../../models/user-info";
 import { UserInfoProvider } from "../../providers/user-info-provider";
 import { IAuthProvider } from '../../providers/i-auth-provider';
 import { ProjectProvider } from '../../providers/project-provider';
-import { Project } from '../../models/project.model';
+import { Project } from '../../models/project.interface';
 
 /**
  * @Author Matthias

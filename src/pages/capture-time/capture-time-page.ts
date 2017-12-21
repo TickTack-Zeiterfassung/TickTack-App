@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Slides } from 'ionic-angular';
 import { IAuthProvider } from '../../providers/i-auth-provider';
-import { Project } from '../../models/project.model';
+import { Project } from '../../models/project.interface';
 import { UserInterfaceProvider } from '../../services/user-interface-service';
 import { ProjectProvider } from '../../providers/project-provider';
 import { Subject } from 'rxjs/Subject';

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Project } from '../../models/project.model';
+import { Project } from '../../models/project.interface';
 import { NavController } from 'ionic-angular';
 import { ProjectProvider } from '../../providers/project-provider';
 

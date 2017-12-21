@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="secondaryDark">
     <ion-title *ngIf="!isNewProject">{{ 'title.projects-details' | translate }}</ion-title>
     <ion-title *ngIf="isNewProject">{{ 'title.new-project' | translate }}</ion-title>
     <ion-buttons end>
@@ -10,12 +10,11 @@
   </ion-navbar>
 </ion-header>
 
+<ion-content color="secondary" style="background-color: #b71c1c">
 
-<ion-content>
+  <ion-list padding-top no-lines>
 
-  <ion-list>
-
-    <ion-item>
+    <ion-item color="secondaryLight">
       <ion-label fixed>{{ 'label.project-name' | translate }}</ion-label>
       <ion-input #name [(ngModel)]="project.name" (ionFocus)="setFocus('name')"></ion-input>
       <button ion-button icon-only clear item-end (click)="clearTextInput(name)" *ngIf="textInputFocused === 'name'">
@@ -23,7 +22,7 @@
       </button>
     </ion-item>
 
-    <ion-item>
+    <ion-item color="secondaryLight">
       <ion-label fixed>{{ 'label.description' | translate }}</ion-label>
       <ion-input #description [(ngModel)]="project.desc" (ionFocus)="setFocus('desc')"></ion-input>
       <button ion-button icon-only clear item-end (click)="clearTextInput(description)" *ngIf="textInputFocused === 'desc'">
@@ -31,7 +30,7 @@
       </button>
     </ion-item>
 
-    <ion-item>
+    <ion-item color="secondaryLight">
       <ion-label>{{ 'label.color' | translate }}</ion-label>
       <ion-select [(ngModel)]="project.color" [okText]="('button.ok' | translate)" [cancelText]="('button.cancel' | translate)">
         <ion-option *ngFor="let color of colors" [value]="color.value">
@@ -40,7 +39,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item color="secondaryLight">
       <ion-label>{{ 'label.active' | translate }}</ion-label>
       <ion-toggle [(ngModel)]="project.active"></ion-toggle>
     </ion-item>

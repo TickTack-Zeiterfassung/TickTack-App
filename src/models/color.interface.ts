@@ -1,4 +1,4 @@
-export class Color {
+export interface Color {
     name: string;
     value: string;
 }
