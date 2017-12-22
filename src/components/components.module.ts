@@ -1,14 +1,18 @@
-import { NgModule } from '@angular/core';
-import { IonicModule } from 'ionic-angular';
-import { ProjectListComponent } from './project-list/project-list';
+import {NgModule} from '@angular/core';
+import {IonicModule} from 'ionic-angular';
+import {ProjectListComponent} from './project-list/project-list.component';
+import {ReportDayListComponent} from './report-day-list/report-day-list.component';
 
 @NgModule({
     declarations: [
-        ProjectListComponent
+        ProjectListComponent,
+        ReportDayListComponent
     ],
     imports: [IonicModule],
     exports: [
-        ProjectListComponent
+        ProjectListComponent,
+        ReportDayListComponent
     ]
 })
-export class ComponentsModule{}
+export class ComponentsModule {
+}

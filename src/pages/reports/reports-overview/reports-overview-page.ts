@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { IAuthProvider } from '../../providers/i-auth-provider';
+import { IAuthProvider } from '../../../providers/i-auth-provider';
 
 /**
  * @Author Marcel
@@ -12,9 +12,10 @@ import { IAuthProvider } from '../../providers/i-auth-provider';
 })
 @Component({
     selector: 'page-report',
-    templateUrl: 'reports-page.html',
+    templateUrl: 'reports-overview-page.html',
 })
 export class ReportsPage {
+    view: string = 'projects';
 
     constructor(private auth: IAuthProvider,
                 public navCtrl: NavController

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { CapturedTime } from "../models/captured-time";
+import { CapturedTime } from "../models/captured-time.interface";
 import { Observable } from "rxjs/Observable";
 import { IDataProvider } from './i-data-provider';
 

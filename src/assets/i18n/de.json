@@ -31,6 +31,9 @@
   "label.project-name":"Projektname",
   "label.remain-signed-in":"Angemeldet bleiben",
 
+  "segment.days":"Tage",
+  "segment.projects":"Projekte",
+
   "title.capture-time":"Zeiterfassung",
   "title.help":"Hilfe",
   "title.login":"Anmelden",
