@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{ 'title.reports' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <div padding>
+        <ion-segment [(ngModel)]="view">
+            <ion-segment-button value="projects">
+                {{ 'segment.projects' | translate }}
+            </ion-segment-button>
+            <ion-segment-button value="days">
+                {{ 'segment.days' | translate }}
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div [ngSwitch]="view">
+        <div *ngSwitchCase="'projects'">
+            <project-list pageToPush="ReportProjectPage"></project-list>
+        </div>
+        <div *ngSwitchCase="'days'">
+            <report-day-list pageToPush="ReportTimePage"></report-day-list>
+        </div>
+    </div>
+
+
+
+</ion-content>
