@@ -3,7 +3,6 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { IAuthProvider } from '../../../providers/i-auth-provider';
 
 /**
- * @Author Marcel
  * Liefert eine Auswertung über alle erfassten zeiten
  */
 

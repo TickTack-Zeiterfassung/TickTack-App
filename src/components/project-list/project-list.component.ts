@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Project} from '../../models/project.interface';
-import {NavController} from 'ionic-angular';
-import {ProjectProvider} from '../../providers/project-provider';
+import { Component, Input, OnInit } from '@angular/core';
+import { Project } from '../../models/project.interface';
+import { NavController } from 'ionic-angular';
+import { ProjectProvider } from '../../providers/project-provider';
 
 /**
  * Zeigt eine Liste aller vorhandenen Projekte des Anwenders
@@ -17,8 +17,8 @@ export class ProjectListComponent implements OnInit {
     projects: Project[];
 
     constructor(private navCtrl: NavController,
-                private projectProvider: ProjectProvider) {
-    }
+                private projectProvider: ProjectProvider
+    ) {}
 
     ngOnInit(): void {
         this.getProjects();
@@ -31,7 +31,6 @@ export class ProjectListComponent implements OnInit {
     getProjects(): void {
         this.projectProvider.getAll().subscribe((projects: Project[]) => {
             this.projects = projects;
-            console.log(projects);
         });
     }
 
