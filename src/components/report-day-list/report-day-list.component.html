@@ -1,4 +1,9 @@
-<!-- Generated template for the ReportDayListComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-list *ngFor="let reportDay of reportDayList">
+  <ion-list-header>
+    {{ reportDay.day }}
+  </ion-list-header>
+  <ion-item *ngFor="let capturedTime of reportDay.capturedTimes">
+    <h2>{{capturedTime.from}} - {{capturedTime.to}}</h2>
+    <p>{{capturedTime.projectName}} - {{capturedTime.desc}}</p>
+  </ion-item>
+</ion-list>

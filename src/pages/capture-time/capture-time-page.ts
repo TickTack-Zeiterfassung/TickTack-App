@@ -5,6 +5,8 @@ import { Project } from '../../models/project.interface';
 import { UserInterfaceProvider } from '../../services/user-interface-service';
 import { ProjectProvider } from '../../providers/project-provider';
 import { Subject } from 'rxjs/Subject';
+import { CapturedTime } from '../../models/captured-time.interface';
+import { CapturedTimeProvider } from '../../providers/captured-time-provider';
 
 /**
  * @Author Marcel
@@ -22,9 +24,6 @@ import { Subject } from 'rxjs/Subject';
 export class CaptureTimePage {
     @ViewChild(Slides) slides: Slides;
 
-    title: string;
-    navBarColor: string;
-
     interval: number;
     recordedTime: number = 0;
 
@@ -33,12 +32,16 @@ export class CaptureTimePage {
 
     activeProjects: Project[];
 
+    selectedProject: Project;
+    capturedTime: CapturedTime;
+
     private ngUnsubscribe: Subject<any> = new Subject();
 
     constructor(private auth: IAuthProvider,
                 private navCtrl: NavController,
                 private uiService: UserInterfaceProvider,
-                private projectProvider: ProjectProvider
+                private projectProvider: ProjectProvider,
+                private capturedTimeProvider: CapturedTimeProvider
     ) {}
 
     ionViewWillLoad(): void {
@@ -64,8 +67,9 @@ export class CaptureTimePage {
     getActiveProjects(): void {
         this.projectProvider.getAll().takeUntil(this.ngUnsubscribe).subscribe((projects: Project[]) => {
             this.activeProjects = projects.filter((project: Project) => {
-               return project.active;
+                return project.active;
             });
+            this.selectedProject = this.activeProjects[0]; // Default
         });
     }
 
@@ -73,10 +77,8 @@ export class CaptureTimePage {
      * Eventlistener für die Slieds. Wird geworfen sobald sich ein Slide geändert hat.
      * @param event das übergebene Event
      */
-    slideChanged(event): void {
-        let project: Project = this.activeProjects[event.realIndex];
-        this.title = project.name;
-        this.navBarColor = project.color;
+    slideChanged(event: Slides): void {
+        this.selectedProject = this.activeProjects[event.realIndex];
     }
 
     /**
@@ -84,6 +86,11 @@ export class CaptureTimePage {
      */
     onTogglePlayPauseFAB(): void {
         if (!this.isTimeRecording && !this.isTimePlaying) {
+            this.capturedTime = {} as CapturedTime;
+            this.capturedTime.projectId = this.selectedProject.id;
+            this.capturedTime.projectName = this.selectedProject.name;
+            this.capturedTime.from = new Date().getTime();
+
             this.isTimeRecording = true;
         }
 
@@ -103,6 +110,17 @@ export class CaptureTimePage {
      * Beendet das Aufnehmen der Zeit
      */
     onClickFinischRecording(): void {
+        this.capturedTime.to = new Date().getTime();
+
+        this.uiService.showPrompt('prompt.title.insert-description',
+            'prompt.message.insert-description',
+            'placeholder.description')
+            .then((description: string) => {
+                this.capturedTime.desc = description;
+                this.capturedTimeProvider.insert(this.capturedTime);
+                this.uiService.presentToast('toast.project-time-recorded');
+            });
+
         this.isTimeRecording = false;
         this.isTimePlaying = false;
 
@@ -110,7 +128,6 @@ export class CaptureTimePage {
         this.recordedTime = 0;
 
         this.slides.lockSwipes(false);
-        this.uiService.presentToast('toast.project-time-recorded');
     }
 
     /**

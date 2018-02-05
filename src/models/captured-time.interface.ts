@@ -1,6 +1,8 @@
 export interface CapturedTime {
-    id: number;
+    id: string;
     desc: string;
-    from: Date;
-    to: Date;
+    from: number;
+    to: number;
+    projectId: string; // Weiß noch nicht genau ob das gebraucht wird
+    projectName: string; // Weiß noch nicht genau ob das gebraucht wird
 }

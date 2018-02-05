@@ -31,6 +31,11 @@
   "label.project-name":"Projektname",
   "label.remain-signed-in":"Angemeldet bleiben",
 
+  "placeholder.description":"Description",
+
+  "prompt.title.insert-description":"Beschreibung",
+  "prompt.message.insert-description":"Möchten Sie eine Beschreibung hinzufügen?",
+
   "segment.days":"Tage",
   "segment.projects":"Projekte",
 

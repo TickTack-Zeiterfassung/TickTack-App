@@ -13,8 +13,8 @@ export class UserInterfaceProvider {
 
     constructor(private toast: ToastController,
                 private alertCtrl: AlertController,
-                private translate: TranslateService
-    ) {}
+                private translate: TranslateService) {
+    }
 
     /**
      * Zeigt einen Toast auf der Oberfläche und übersetzt die übergebene Nachricht
@@ -31,6 +31,12 @@ export class UserInterfaceProvider {
         toast.present();
     }
 
+    /**
+     * Fordert den Nutzer auf etwas zu bestätigen
+     * @param {string} title als Übersetzungsschlüssel
+     * @param {string} message als Übersetzungsschlüssel
+     * @returns {Promise<boolean>}
+     */
     showConfirm(title: string, message: string): Promise<boolean> {
         return new Promise((resolve) => {
 
@@ -53,6 +59,38 @@ export class UserInterfaceProvider {
                 ]
             });
             confirm.present();
+
+        });
+    }
+
+    showPrompt(title: string, message: string, placeholder: string): Promise<string> {
+        return new Promise((resolve) => {
+
+            let prompt = this.alertCtrl.create({
+                title: this.translate.instant(title),
+                message: this.translate.instant(message),
+                inputs: [
+                    {
+                        name: 'description',
+                        placeholder: this.translate.instant(placeholder),
+                    },
+                ],
+                buttons: [
+                    {
+                        text: this.translate.instant('button.cancel'),
+                        handler: data => {
+                            resolve(null);
+                        }
+                    },
+                    {
+                        text: this.translate.instant('button.save'),
+                        handler: data => {
+                            resolve(data.description);
+                        }
+                    }
+                ]
+            });
+            prompt.present();
 
         });
     }
