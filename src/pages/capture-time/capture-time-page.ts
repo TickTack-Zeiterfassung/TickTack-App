@@ -66,10 +66,12 @@ export class CaptureTimePage {
      */
     getActiveProjects(): void {
         this.projectProvider.getAll().takeUntil(this.ngUnsubscribe).subscribe((projects: Project[]) => {
-            this.activeProjects = projects.filter((project: Project) => {
-                return project.active;
-            });
-            this.selectedProject = this.activeProjects[0]; // Default
+            if(projects !== null) {
+                this.activeProjects = projects.filter((project: Project) => {
+                    return project.active;
+                });
+                this.selectedProject = this.activeProjects[0]; // Default
+            }
         });
     }
 
