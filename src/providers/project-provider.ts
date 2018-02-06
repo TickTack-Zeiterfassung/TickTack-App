@@ -34,7 +34,7 @@ export class ProjectProvider {
      */
     getAll(): Observable<Project[]> {
         return this.dataProvider.get('projects', null).map(value => {
-            return value as Array<Project>;
+            return value ? value as Array<Project> : [];
         });
     }
 
