@@ -95,4 +95,30 @@ export class UserInterfaceProvider {
         });
     }
 
+    showPromptWithoutCancle(title: string, message: string, placeholder: string): Promise<string> {
+        return new Promise((resolve) => {
+
+            let prompt = this.alertCtrl.create({
+                title: this.translate.instant(title),
+                message: this.translate.instant(message),
+                inputs: [
+                    {
+                        name: 'description',
+                        placeholder: this.translate.instant(placeholder),
+                    },
+                ],
+                buttons: [
+                    {
+                        text: this.translate.instant('button.save'),
+                        handler: data => {
+                            resolve(data.description);
+                        }
+                    }
+                ]
+            });
+            prompt.present();
+
+        });
+    }
+
 }

@@ -24,6 +24,8 @@ import { CapturedTimeProvider } from '../../providers/captured-time-provider';
 export class CaptureTimePage {
     @ViewChild(Slides) slides: Slides;
 
+    firstObservableNullValue: boolean = true;
+
     interval: number;
     recordedTime: number = 0;
 
@@ -49,11 +51,11 @@ export class CaptureTimePage {
             .then(loggedIn => {
                     if (!loggedIn) {
                         this.navCtrl.setRoot('LoginPage');
+                    } else {
+                        this.getActiveProjects();
                     }
                 }
             );
-
-        this.getActiveProjects();
     }
 
     ionViewWillUnload() {
@@ -65,12 +67,35 @@ export class CaptureTimePage {
      * Holt alle Projekte und filtert alle inaktiven Projekte heraus
      */
     getActiveProjects(): void {
+
         this.projectProvider.getAll().takeUntil(this.ngUnsubscribe).subscribe((projects: Project[]) => {
-            if(projects !== null) {
+
+            if(projects.length > 0) {
                 this.activeProjects = projects.filter((project: Project) => {
                     return project.active;
                 });
                 this.selectedProject = this.activeProjects[0]; // Default
+            } else {
+                if(!this.firstObservableNullValue) {
+                    this.selectedProject = {} as Project;
+
+                    this.uiService.showPromptWithoutCancle('prompt.title.new-project',
+                        'prompt.title.new-project',
+                        'prompt.title.new-project')
+                        .then((title: string) => {
+
+                            this.selectedProject.name = title;
+                            this.selectedProject.desc = "";
+                            this.selectedProject.color = "green";
+                            this.selectedProject.active = true;
+
+                            this.projectProvider.insert(this.selectedProject).then(() => {
+                                this.uiService.presentToast('toast.project-created');
+                            });
+                        });
+                } else {
+                    this.firstObservableNullValue = false;
+                }
             }
         });
     }
@@ -111,7 +136,7 @@ export class CaptureTimePage {
     /**
      * Beendet das Aufnehmen der Zeit
      */
-    onClickFinischRecording(): void {
+    onClickFinishRecording(): void {
         this.capturedTime.to = new Date().getTime();
 
         this.uiService.showPrompt('prompt.title.insert-description',
