@@ -36,6 +36,9 @@
   "prompt.title.insert-description":"Beschreibung",
   "prompt.message.insert-description":"Möchten Sie eine Beschreibung hinzufügen?",
 
+  "prompt.title.new-project":"Neues Projekt",
+  "prompt.message.new-project":"Bitte benennen Sie ihr erstes Projekt.",
+
   "segment.days":"Tage",
   "segment.projects":"Projekte",
 
@@ -51,5 +54,6 @@
   "title.settings":"Einstellungen",
 
   "toast.worked":"Das hat geklappt!",
-  "toast.project-time-recorded":"Die Projektzeit wurde erfasst."
+  "toast.project-time-recorded":"Die Projektzeit wurde erfasst.",
+  "toast.project-created":"Das Projekt wurde erfolgreich erstellt."
 }

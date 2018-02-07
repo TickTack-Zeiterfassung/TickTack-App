@@ -8,7 +8,6 @@ import { FirebaseAuthProvider } from './firebase-auth-provider';
 import { Subscription } from "rxjs/Subscription";
 
 /**
- * @author Matthias
  * Implementierung der IDataProvider-Schnittstelle fuer die Firebase-Datenbank.
  * Mit diesem Provider ist es moeglichen Daten aus dem Backend zu
  * - laden,
