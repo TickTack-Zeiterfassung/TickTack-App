@@ -22,6 +22,8 @@
   "color.white":"Weiß",
   "color.yellow":"Gelb",
 
+  "fab.add-time":"Zeit hinzufügen",
+
   "label.active":"Aktiv",
   "label.color":"Farbe",
   "label.confirm-password":"Passwort bestätigen",
