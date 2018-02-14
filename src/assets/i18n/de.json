@@ -22,6 +22,8 @@
   "color.white":"Weiß",
   "color.yellow":"Gelb",
 
+  "fab.add-time":"Zeit hinzufügen",
+
   "label.active":"Aktiv",
   "label.color":"Farbe",
   "label.confirm-password":"Passwort bestätigen",
@@ -30,6 +32,7 @@
   "label.password":"Passwort",
   "label.project-name":"Projektname",
   "label.remain-signed-in":"Angemeldet bleiben",
+  "label.total-time":"Gesamtzeit",
 
   "placeholder.description":"Description",
 
@@ -41,6 +44,8 @@
 
   "segment.days":"Tage",
   "segment.projects":"Projekte",
+  "sliding-button.change":"Ändern",
+  "sliding-button.delete":"Löschen",
 
   "title.capture-time":"Zeiterfassung",
   "title.help":"Hilfe",

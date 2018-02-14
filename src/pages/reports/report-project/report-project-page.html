@@ -1,18 +1,48 @@
-<!--
-  Generated template for the ReportDetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>report-detail</ion-title>
-  </ion-navbar>
-
+    <ion-navbar color="secondaryDark">
+        <ion-title>{{ project.name }}</ion-title>
+    </ion-navbar>
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+    <!-- Total time -->
+    <div padding ion-text color="secondaryText" class="time-total">
+        {{ 'label.total-time' | translate }}: {{ totalTime }}
+    </div>
+
+    <!-- FAB -->
+    <div padding class="flex-container">
+        <div>
+            <button color="support" ion-fab mini>
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </div>
+        <div>
+            <div ion-text color="secondaryText">{{ 'fab.add-time' | translate }}</div>
+        </div>
+    </div>
+
+    <!-- List -->
+    <ion-list *ngFor="let project of mockProjects">
+        <div padding-left class="day">{{ project.day }}</div>
+        <ion-item-sliding *ngFor="let time of project.stoppedTimes">
+            <ion-item color="secondaryLight">
+                <h2>{{ time.period }}</h2>
+                <p>{{ time.activity }}</p>
+            </ion-item>
+
+            <ion-item-options side="right">
+                <button ion-button color="primaryLight">
+                    <ion-icon name="brush"></ion-icon>
+                    {{ 'sliding-button.change' | translate }}
+                </button>
+                <button ion-button color="primary">
+                    <ion-icon name="trash"></ion-icon>
+                    {{ 'sliding-button.delete' | translate }}
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
 
 </ion-content>
