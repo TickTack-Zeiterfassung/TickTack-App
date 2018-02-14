@@ -16,18 +16,14 @@
         <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
-    <ion-grid>
-        <ion-row align-items-center>
-            <ion-col col-5>
-                <div float-right>
-                    <ion-toggle color="primary"></ion-toggle>
-                </div>
-            </ion-col>
-            <ion-col col-7>
-                <div>{{ 'label.remain-signed-in' | translate }}</div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <div padding class="flex-container">
+        <div class="toggle">
+            <ion-toggle color="primary"></ion-toggle>
+        </div>
+        <div>
+            {{ 'label.remain-signed-in' | translate }}
+        </div>
+    </div>
 
     <div style="text-align: center">
         <button ion-button round class="button-40" (click)="login()">{{ 'button.login' | translate }}</button>
