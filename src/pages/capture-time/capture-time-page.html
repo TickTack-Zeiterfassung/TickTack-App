@@ -12,7 +12,7 @@
         <ion-slide *ngFor="let project of activeProjects" [style.backgroundColor]="project.color">
 
             <!-- Zeitanzeige -->
-            <h1 class="timer">{{recordedTime}}</h1>
+            <h1 class="timer">{{recordedTime | totalTimePipe:false}}</h1>
 
             <!-- Großer FAB -->
             <ion-fab center class="big">
