@@ -48,7 +48,7 @@ export class ReportDayListComponent implements OnInit {
         capturedTimes.forEach((capturedTime: CapturedTime) => {
             reportDay.capturedTimes = [];
             reportDay.capturedTimes.push(capturedTime);
-            reportDay.day = new Date(capturedTime.from);
+            reportDay.day = capturedTime.from;
         })
     }
 

@@ -8,7 +8,7 @@
 
     <!-- Total time -->
     <div padding ion-text color="secondaryText" class="time-total">
-        {{ 'label.total-time' | translate }}: {{ totalTime }}
+        {{ 'label.total-time' | translate }}: {{ totalTime | totalTimePipe }}
     </div>
 
     <!-- FAB -->
@@ -24,12 +24,12 @@
     </div>
 
     <!-- List -->
-    <ion-list *ngFor="let project of mockProjects">
-        <div padding-left class="day">{{ project.day }}</div>
-        <ion-item-sliding *ngFor="let time of project.stoppedTimes">
+    <ion-list *ngFor="let reportDay of reports">
+        <div padding-left class="day">{{ reportDay?.day | date:'EEEE, dd.MM.yyyy' }}</div>
+        <ion-item-sliding *ngFor="let time of reportDay.capturedTimes">
             <ion-item color="secondaryLight">
-                <h2>{{ time.period }}</h2>
-                <p>{{ time.activity }}</p>
+                <h2>{{ time?.from | date:'HH:mm:ss' }} - {{ time?.to | date:'HH:mm:ss'}}</h2>
+                <p>{{ time?.desc }}</p>
             </ion-item>
 
             <ion-item-options side="right">

@@ -23,6 +23,7 @@ import { IAuthProvider } from '../providers/i-auth-provider';
 import { FirebaseAuthProvider } from '../providers/firebase-auth-provider';
 import { CapturedTimeProvider } from '../providers/captured-time-provider';
 import { UserInterfaceProvider } from '../services/user-interface-service';
+import { ReportProvider } from '../providers/report-provider';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,10 +64,11 @@ export function createTranslateLoader(http: HttpClient) {
         ProjectProvider,
         UserInfoProvider,
         CapturedTimeProvider,
+        ReportProvider,
 
         FirebaseAuthProvider,
         {provide: IAuthProvider, useClass: FirebaseAuthProvider},
-        UserInterfaceProvider,
+        UserInterfaceProvider
     ]
 })
 export class AppModule {

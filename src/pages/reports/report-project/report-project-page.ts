@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Project } from '../../../models/project.interface';
+import { ReportProvider } from '../../../providers/report-provider';
+import { ReportDay } from '../../../models/report-day-list.interface';
 
 @IonicPage()
 @Component({
@@ -9,32 +11,37 @@ import { Project } from '../../../models/project.interface';
 })
 export class ReportProjectPage {
     project = {} as Project;
-    totalTime: string = '86 Stunden 3 Minuten 5 Sekunden';
+    reports = [] as ReportDay[];
+    totalTime: number = 0;
 
-    mockProjects = [
-        {
-            day: 'Montag, 20.11.2018',
-            stoppedTimes: [
-                { period: '08:00 Uhr - 09:34 Uhr', activity: 'Bild gemalt' },
-                { period: '10:00 Uhr - 11:20 Uhr' , activity: 'Projektmanagement' }
-            ]
-        },
-        {
-            day: 'Dienstag, 21.11.2018',
-            stoppedTimes: [
-                { period: '08:00 Uhr - 09:34 Uhr', activity: 'Bild gemalt' },
-                { period: '10:00 Uhr - 11:20 Uhr' , activity: 'Projektmanagement' }
-            ]
-        }
-    ];
-
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
-    }
+    constructor(public navCtrl: NavController, public navParams: NavParams, public reportProvider: ReportProvider) {}
 
     ionViewWillLoad(): void {
         if (this.navParams.get('project')) {
             this.project = this.navParams.get('project') as Project;
+            this.reportProvider.getProjectTimes(this.project.id)
+                .subscribe(reports => {
+                    this.reports = reports;
+                    this.totalTime = this.calcTotalTime(reports);
+            })
         }
+    }
+
+    /**
+     * Ermittelt die gesamte Zeit in Millisekunden von mehreren Tagen.
+     * @param {ReportDay[]} reports
+     * @returns {number}
+     */
+    private calcTotalTime(reports: ReportDay[]): number {
+        let time = 0;
+
+        reports.forEach(report => {
+            report.capturedTimes.forEach(_time => {
+                time += _time.to - _time.from;
+            });
+        });
+
+        return time;
     }
 
 }
