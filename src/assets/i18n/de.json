@@ -44,6 +44,8 @@
 
   "segment.days":"Tage",
   "segment.projects":"Projekte",
+  "sliding-button.change":"Ändern",
+  "sliding-button.delete":"Löschen",
 
   "title.capture-time":"Zeiterfassung",
   "title.help":"Hilfe",
